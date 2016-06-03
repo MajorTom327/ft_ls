@@ -6,7 +6,7 @@
 /*   By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/08 11:25:06 by vthomas           #+#    #+#             */
-/*   Updated: 2016/05/08 12:43:00 by vthomas          ###   ########.fr       */
+/*   Updated: 2016/06/03 08:01:52 by vthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,20 @@
 # define FT_LS_H
 # include "libft.h"
 # include <dirent.h>
+# include "debug.h"
 
 typedef struct dirent dirent;
 typedef struct	s_file
 {
 	dirent	**f_list;
+	char		*name;
 	int			*hide;
-	int			nb
+	int			nb;
 }		t_file;
+
 char	**f_args(int ac, char **av);
-int	get_args(int ac, char **av);
+int		get_args(int ac, char **av);
 void	f_ls(char **dir, int size, int arg);
 t_file	*f_get_file(char **dir, int size);
+void	print_file(t_file *f_list, int size, int arg);
 #endif

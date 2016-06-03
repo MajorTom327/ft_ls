@@ -6,7 +6,7 @@
 #    By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/29 21:15:40 by vthomas           #+#    #+#              #
-#    Updated: 2016/05/08 12:38:46 by vthomas          ###   ########.fr        #
+#    Updated: 2016/06/03 07:51:33 by vthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,9 @@ NAME=ft_ls
 DEBUG=yes
 CC=gcc
 ifeq ($(DEBUG),yes)
-	export CFLAGS=-Wall -Wextra -g
+	CFLAGS=libdbg.a -Wall -Wextra -g
 else
-	export CFLAGS=-Wall -Wextra -Werror
+	CFLAGS=-Wall -Wextra -Werror
 endif
 
 #* ******************************************* *#
@@ -34,7 +34,8 @@ TEST_PATH=./test/
 
 SRC_NAME=main.c\
 	 f_arg.c\
-	 f_ls.c
+	 f_ls.c\
+	 f_print.c
 INC_NAME=libft.h\
 	 ft_ls.h
 OBJ_NAME=$(SRC_NAME:.c=.o)
@@ -86,6 +87,10 @@ test: re
 	@clear
 	@echo "\033[5;31;4m\t\tSTART TEST\033[0m\n"
 	-@./$(NAME)
+	@echo "\033[31m/* ****************************************************************************** */\033[0m"
+	-@./$(NAME) ./src
+	@echo "\033[31m/* ****************************************************************************** */\033[0m"
+	-@./$(NAME) ./src ./include
 
 norme:
 	@norminette $(SRC) $(addprefix $(INC_PATH),$(INC_NAME))
