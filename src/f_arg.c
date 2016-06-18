@@ -6,7 +6,7 @@
 /*   By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/08 11:24:39 by vthomas           #+#    #+#             */
-/*   Updated: 2016/06/03 08:02:14 by vthomas          ###   ########.fr       */
+/*   Updated: 2016/06/18 17:26:59 by vthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,12 @@ int	get_args(int ac, char **av)
 	if (arg != NULL && av[1][0] == '-')
 	{
 		dbg_info("get_args", "sorting the data...", 2);
-		i = (ft_strchr(arg, 'l') != NULL) ? i | 0x1 : i;
-		i = (ft_strchr(arg, 'R') != NULL) ? i | 0x2 : i;
-		i = (ft_strchr(arg, 'a') != NULL) ? i | 0x4 : i;
-		i = (ft_strchr(arg, 'r') != NULL) ? i | 0x8 : i;
-		i = (ft_strchr(arg, 't') != NULL) ? i | 0xF : i;
+		i = (ft_strchr(arg, 'l') != NULL) ? i | 0x01 : i;
+		i = (ft_strchr(arg, 'R') != NULL) ? i | 0x02 : i;
+		i = (ft_strchr(arg, 'a') != NULL) ? i | 0x04 : i;
+		i = (ft_strchr(arg, 'r') != NULL) ? i | 0x08 : i;
+		i = (ft_strchr(arg, 't') != NULL) ? i | 0x0F : i;
+		i = (ft_strchr(arg, 'G') != NULL) ? i | 0x10 : i;
 	}
 	dbg_info("get_args", "Done !", 2);
 	dbg_var_int("get_args","Argument value:", i, 2);

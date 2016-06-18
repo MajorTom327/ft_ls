@@ -6,7 +6,7 @@
 #    By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/29 21:15:40 by vthomas           #+#    #+#              #
-#    Updated: 2016/06/03 07:51:33 by vthomas          ###   ########.fr        #
+#    Updated: 2016/06/18 17:34:38 by vthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,7 @@ else
 	@echo "\033[32m[MAIN]\t\t(release)\033[0m"
 endif
 	@$(CC) $(CFLAGS) -o $(NAME) $(INC) $(OBJ) $(LIB_FILE)
+	@chmod +x $(NAME)
 
 # Compilation of all .c with modulable rule
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
@@ -76,7 +77,7 @@ re: fclean all
 
 clean:
 	@rm -rf $(OBJ_PATH)
-	@(cd $(LIB) && $(MAKE) $@)
+	@$(MAKE) -C $(LIB) $@
 
 fclean: clean
 	@rm -rf $(NAME)
@@ -88,9 +89,9 @@ test: re
 	@echo "\033[5;31;4m\t\tSTART TEST\033[0m\n"
 	-@./$(NAME)
 	@echo "\033[31m/* ****************************************************************************** */\033[0m"
-	-@./$(NAME) ./src
+	-@./$(NAME) ./include ./src
 	@echo "\033[31m/* ****************************************************************************** */\033[0m"
-	-@./$(NAME) ./src ./include
+	-@./$(NAME) -G ./include
 
 norme:
 	@norminette $(SRC) $(addprefix $(INC_PATH),$(INC_NAME))

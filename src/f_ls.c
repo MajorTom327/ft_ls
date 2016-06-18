@@ -6,7 +6,7 @@
 /*   By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/08 11:24:33 by vthomas           #+#    #+#             */
-/*   Updated: 2016/06/03 08:59:54 by vthomas          ###   ########.fr       */
+/*   Updated: 2016/06/18 17:47:28 by vthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_file	*f_get_file(char **dir, int size)
 		exit(EXIT_FAILURE);
 	i = 0;
 	dbg_var_int("f_get_file", "size", size, 2);
-	while (i < size)
+	while (i < size - 1)
 	{
 		dbg_var_int("f_get_file", "i", i, 2);
 		dbg_var_str("f_get_file","dir[i]", dir[i], 2);
@@ -36,7 +36,7 @@ t_file	*f_get_file(char **dir, int size)
 		closedir(di);
 		if ((di = opendir(dir[i])) == NULL)
 			perror(NULL);
-		file[i].f_list = (dirent **)ft_memalloc(sizeof(dirent) * c);
+		file[i].f_list = (t_dirent **)ft_memalloc(sizeof(t_dirent) * c);
 		file[i].nb = c;
 		file[i].name = ft_strdup(dir[i]);
 		c = 0;

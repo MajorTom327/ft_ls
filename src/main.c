@@ -6,7 +6,7 @@
 /*   By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/08 11:24:51 by vthomas           #+#    #+#             */
-/*   Updated: 2016/06/03 08:58:46 by vthomas          ###   ########.fr       */
+/*   Updated: 2016/06/18 17:25:41 by vthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,10 @@ int	main(int ac, char **av)
 		dir = f_args(ac, av);
 		dbg_info("main", "get args", 1);
 		arg = get_args(ac, av);
+		ac = (arg != 0) ? ac - 1 : ac;
 		dbg_info("main", "endif", 0);
 	}
 	dbg_var_str("main", "dir[0]", dir[0], 0);
-	f_ls(dir, ((ac == 1) ? ac : --ac), arg);
+	f_ls(dir, ((ac == 1) ? ac : ac), arg);
 	return (EXIT_SUCCESS);
 }
