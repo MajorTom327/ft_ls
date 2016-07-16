@@ -6,7 +6,7 @@
 #    By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/29 21:15:40 by vthomas           #+#    #+#              #
-#    Updated: 2016/07/10 04:30:28 by vthomas          ###   ########.fr        #
+#    Updated: 2016/07/16 05:49:54 by vthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,9 +33,9 @@ LIB_PATH=./
 TEST_PATH=./test/
 
 SRC_NAME=main.c\
-	 f_arg.c\
-	 f_ls.c\
-	 f_print.c
+		get_arg.c\
+		ls_exit.c\
+		viewer.c
 INC_NAME=libft.h\
 	 ft_ls.h
 OBJ_NAME=$(SRC_NAME:.c=.o)
@@ -87,11 +87,14 @@ fclean: clean
 test: re
 	@clear
 	@echo "\033[5;31;4m\t\tSTART TEST\033[0m\n"
+	@echo "\033[4m./ft_ls:\033[0m"
 	-@./$(NAME)
-	@echo "\033[31m/* ****************************************************************************** */\033[0m"
+	@echo "\n\n"
+	@echo "\033[4m./ft_ls ./include ./src:\033[0m"
 	-@./$(NAME) ./include ./src
-	@echo "\033[31m/* ****************************************************************************** */\033[0m"
-	-@./$(NAME) -G ./
+	@echo "\n\n"
+	@echo "\033[4m./ft_ls -Gl ./:\033[0m"
+	-@./$(NAME) -Gl ./
 
 norme:
 	@norminette $(SRC) $(addprefix $(INC_PATH),$(INC_NAME))
