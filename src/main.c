@@ -7,7 +7,9 @@ static void sf_mainloop(int flag, char **dir)
 	dbg_title("MAIN LOOP");
 	while (*dir)
 	{
-		ft_putendl(*dir);
+		ft_putstr(*dir);
+		ft_putendl(":");
+		main_view(flag, *dir);
 		dir++;
 	}
 	dbg_title("EXITING MAIN LOOP");

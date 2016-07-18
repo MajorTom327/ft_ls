@@ -16,6 +16,7 @@ int		get_arg(char *arg)
 	i = (ft_strchr(arg, 't') != NULL) ? i | 0x0F : i;
 	i = (ft_strchr(arg, 'G') != NULL) ? i | 0x10 : i;
 	i = (ft_strchr(arg, '1') != NULL) ? i | 0x20 : i;
+	i = (ft_strchr(arg, 'F') != NULL) ? i | 0x40 : i;
 	dbg_var_int("get_arg", "argument value:", i, 1);
 	return (i);
 }
@@ -45,11 +46,27 @@ char	**get_dir(int ac, char **av)
 	return (dir);
 }
 
-//TODO: Must be finished
-void get_files(const char *dir_name)
+//TODO: Maybe somes fixes will be needed
+t_dirent *get_files(const char *dir_name)
 {
-	DIR *directory;
+	DIR			*directory;
+	t_dirent	*files;
+	t_dirent	*tmp;
+	int			i;
 
 	directory = opendir(dir_name);
 	exit_mem((void *)directory);
+	i = 0;
+	while ((tmp = readdir(directory)) != NULL)
+		i++;
+	closedir(directory);
+
+	directory = opendir(dir_name);
+	exit_mem((void *)directory);
+	files = ft_memalloc(sizeof(t_dirent) * i);
+	exit_mem(files);
+	while ((tmp = readdir(directory)) != NULL)
+		ft_memcpy((void *)&files[--i],(void *)tmp, sizeof(t_dirent));
+	closedir(directory);
+	return (files);
 }

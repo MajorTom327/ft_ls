@@ -12,9 +12,10 @@
 
 typedef struct dirent	t_dirent;
 
-int		get_arg(char *arg);
-char	**get_dir(int ac, char **av);
-void	main_view(int flag, char *str_dir);
-void	exit_failure(void);
-void	exit_mem(void *mem);
+int			get_arg(char *arg);
+char		**get_dir(int ac, char **av);
+t_dirent	*get_files(const char *dir_name);
+void		main_view(int flag, char *str_dir);
+void		exit_failure(void);
+void		exit_mem(void *mem);
 #endif
