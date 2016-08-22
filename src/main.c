@@ -21,19 +21,21 @@ int main(int ac, char **av)
 	int		flag;
 	int		count;
 
+	UNUSED(count);
+	flag = 0;
 	dbg_title("FT_LS");
 	dbg_var_int("main", "ac", ac, 0);
 	if (ac > 1)
 		flag = get_arg(av[1]);
 	dir = get_dir(ac, av);
-	dbg_var_array_str("main", "dir list", dir, 0);
+	dbg_var_array_str("main", "dir list", (const char **)dir, 0);
 	//Going in the main loop
 	sf_mainloop(flag, dir);
 	dbg_title("FREEING THE MEMORY");
 	if (flag != 0)
-		ft_memdel(--dir);
+		ft_memdel((void **)--dir);
 	else
-		ft_memdel(dir);
+		ft_memdel((void **)dir);
 	dbg_title("END FT_LS");
 	return (0);
 }

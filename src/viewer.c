@@ -8,11 +8,14 @@ void main_view(int flag, char *str_dir)
 {
 	t_dirent *files;
 
+	UNUSED(flag);
 	files = get_files(str_dir);
 	dbg_info("main_view", "Files get OK", 1);
-	ft_memdel(&files); 
+	ft_memdel((void **)&files); 
 }
 
 void file_view(int flag, t_dirent *f_list)
 {
+	UNUSED(flag);
+	UNUSED(f_list);
 }

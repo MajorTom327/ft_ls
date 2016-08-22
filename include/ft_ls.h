@@ -7,7 +7,7 @@
 # define LS_FLAG_T	0x0F
 # define LS_FLAG_G	0x10
 # define LS_FLAG_1	0x20
-
+# define UNUSED(x) (void)x
 #include <dirent.h>
 
 typedef struct dirent	t_dirent;
