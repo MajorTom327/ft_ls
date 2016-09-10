@@ -6,7 +6,7 @@
 /*   By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 21:59:37 by vthomas           #+#    #+#             */
-/*   Updated: 2016/07/16 04:11:34 by vthomas          ###   ########.fr       */
+/*   Updated: 2016/08/18 17:43:49 by vthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ void	dbg_var_array_int(const char *f, const char *name, const int *str, size_t l
 void	dbg_var_array_char(const char *f, const char *name, const char *str, size_t lvl);
 void	dbg_var_array_str(const char *f, const char *name, const char **str, size_t lvl);
 size_t	ft_strlen(char const *s);
-void	ft_putnbr(int n);
+void	dbg_putnbr(int n);
 void	ft_spacelevel(size_t lvl);
 #endif

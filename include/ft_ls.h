@@ -7,6 +7,7 @@
 # define LS_FLAG_T	0x0F
 # define LS_FLAG_G	0x10
 # define LS_FLAG_1	0x20
+# define LS_FLAG_F	0x40
 # define UNUSED(x) (void)x
 #include <dirent.h>
 
@@ -15,7 +16,14 @@ typedef struct dirent	t_dirent;
 int			get_arg(char *arg);
 char		**get_dir(int ac, char **av);
 t_dirent	*get_files(const char *dir_name);
+
 void		main_view(int flag, char *str_dir);
+
+int			is_before(const char *first, const char *next);
+void		sort_alpha(t_dirent **f_list);
+void		sort(int flag, t_dirent *dir);
+
 void		exit_failure(void);
 void		exit_mem(void *mem);
+
 #endif

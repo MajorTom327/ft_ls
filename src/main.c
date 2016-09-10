@@ -1,6 +1,6 @@
-#include <libft.h>
+#include "libft.h"
 #include <ft_ls.h>
-#include <debug.h>
+#include "debug.h"
 
 static void sf_mainloop(int flag, char **dir)
 {

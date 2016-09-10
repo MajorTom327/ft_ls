@@ -2,6 +2,10 @@
 #include <libft.h>
 #include <debug.h>
 
+/*
+** get_arg
+** Get arg is the function who will transforme char arg in a int value.
+*/
 int		get_arg(char *arg)
 {
 	int	i;
@@ -9,14 +13,14 @@ int		get_arg(char *arg)
 	i = 0;
 	if (arg[0] != '-')
 		return (0);
-	i = (ft_strchr(arg, 'l') != NULL) ? i | 0x01 : i;
-	i = (ft_strchr(arg, 'R') != NULL) ? i | 0x02 : i;
-	i = (ft_strchr(arg, 'a') != NULL) ? i | 0x04 : i;
-	i = (ft_strchr(arg, 'r') != NULL) ? i | 0x08 : i;
-	i = (ft_strchr(arg, 't') != NULL) ? i | 0x0F : i;
-	i = (ft_strchr(arg, 'G') != NULL) ? i | 0x10 : i;
-	i = (ft_strchr(arg, '1') != NULL) ? i | 0x20 : i;
-	i = (ft_strchr(arg, 'F') != NULL) ? i | 0x40 : i;
+	i = (ft_strchr(arg, 'l') != NULL) ? i | LS_FLAG_L : i;
+	i = (ft_strchr(arg, 'R') != NULL) ? i | LS_FLAG_R : i;
+	i = (ft_strchr(arg, 'a') != NULL) ? i | LS_FLAG_A : i;
+	i = (ft_strchr(arg, 'r') != NULL) ? i | LS_FLAG_MR : i;
+	i = (ft_strchr(arg, 't') != NULL) ? i | LS_FLAG_T : i;
+	i = (ft_strchr(arg, 'G') != NULL) ? i | LS_FLAG_G : i;
+	i = (ft_strchr(arg, '1') != NULL) ? i | LS_FLAG_1 : i;
+	i = (ft_strchr(arg, 'F') != NULL) ? i | LS_FLAG_F : i;
 	dbg_var_int("get_arg", "argument value:", i, 1);
 	return (i);
 }
