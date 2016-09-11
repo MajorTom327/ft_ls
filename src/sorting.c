@@ -2,21 +2,21 @@
 #include <libft.h>
 #include <debug.h>
 
-
 void	sort(int flag, t_dirent *dir)
 {
-	unsigned int i;
-	unsigned int nb;
+	unsigned int	i;
+	unsigned int	nb;
 
 	if (flag & LS_FLAG_T)
 	{
-		//time sorting
+		//TODO:time sorting
 	}
 	if (flag & LS_FLAG_MR)
 	{
 		i = 0;
 		nb = 0;
-		while (&dir[nb++] != NULL);//count number of value
+		while (&dir[nb++] != NULL)
+			;
 		while (nb != 0)
 		{
 			ft_memswitch((void *)&dir[i], (void *)&dir[nb], sizeof(t_dirent));
@@ -30,24 +30,18 @@ void	sort_alpha(t_dirent **f_list)
 {
 	size_t		i;
 	t_dirent	*dir;
-	t_dirent	*tmp;
 
 	dir = *f_list;
-	exit_mem((tmp = (t_dirent *)ft_memalloc(sizeof(t_dirent*))));
-	while (dir->d_name[0] != '\0')// [w] -> 1
+	while (dir->d_name[0] != '\0')
 	{
 		i = 0;
-		while (dir[i].d_name[0] != '\0')// [w] -> 2
+		while (dir[i].d_name[0] != '\0')
 		{
-//			dbg_var_str("sort", "current file", dir[i].d_name, 3);
-//			dbg_breakpoint("sort", 1);
-			if (is_before(dir->d_name, dir[i].d_name))//TODO: comparaison de nom
+			if (is_before(dir->d_name, dir[i].d_name))
 			{
 				ft_memswitch((void *)dir, (void *)&dir[i], sizeof(t_dirent));
-//				ft_memcpy((void *)tmp, (void *)dir, sizeof(t_dirent));
-//				ft_memcpy((void *)dir, (void *)&dir[i], sizeof(t_dirent));
-//				ft_memcpy((void *)&dir[i], (void *)tmp, sizeof(t_dirent));
-				break;//exit [w2] and return in [w1]
+				dir = *f_list;
+				break ;
 			}
 			i++;
 		}
@@ -70,9 +64,3 @@ int		is_before(const char *first, const char *next)
 	}
 	return (0);
 }
-
-
-
-
-
-

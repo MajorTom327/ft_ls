@@ -6,7 +6,7 @@
 #    By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/29 21:15:40 by vthomas           #+#    #+#              #
-#    Updated: 2016/09/11 21:58:08 by vthomas          ###   ########.fr        #
+#    Updated: 2016/09/12 00:19:50 by vthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,8 @@ SRC_NAME=main.c\
 		ls_exit.c\
 		viewer.c\
 		sorting.c\
-		file_view.c
+		file_view.c\
+		printname.c
 INC_NAME=libft.h\
 		ft_ls.h\
 		debug.h
@@ -102,8 +103,8 @@ test: re
 	@echo "\033[4m./ft_ls ./include ./src:\033[0m"
 	-@./$(NAME) ./include ./src
 	@echo "\n\n"
-	@echo "\033[4m./ft_ls -Gl ./:\033[0m"
-	-@./$(NAME) -Gl ./
+	@echo "\033[4m./ft_ls -GlaF ./:\033[0m"
+	-@./$(NAME) -GlaF ./
 
 norme:
 	@norminette $(SRC) $(addprefix $(INC_PATH),$(INC_NAME))

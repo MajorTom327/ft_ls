@@ -2,7 +2,7 @@
 #include <ft_ls.h>
 #include "debug.h"
 
-static void sf_mainloop(int flag, char **dir)
+static void	sf_mainloop(int flag, char **dir)
 {
 	dbg_title("MAIN LOOP");
 	while (*dir)
@@ -15,7 +15,7 @@ static void sf_mainloop(int flag, char **dir)
 	dbg_title("EXITING MAIN LOOP");
 }
 
-int main(int ac, char **av)
+int			main(int ac, char **av)
 {
 	char	**dir;
 	int		flag;
@@ -29,7 +29,6 @@ int main(int ac, char **av)
 		flag = get_arg(av[1]);
 	dir = get_dir(ac, av);
 	dbg_var_array_str("main", "dir list", (const char **)dir, 0);
-	//Going in the main loop
 	sf_mainloop(flag, dir);
 	dbg_title("FREEING THE MEMORY");
 	if (flag != 0)

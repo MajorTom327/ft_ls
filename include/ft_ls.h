@@ -8,6 +8,9 @@
 # define LS_FLAG_G	0x10
 # define LS_FLAG_1	0x20
 # define LS_FLAG_F	0x40
+# define LS_FLAG_MF	0x80
+# define LS_FLAG_M	0xF0
+
 # define UNUSED(x) (void)x
 #include <dirent.h>
 #include <sys/stat.h>
@@ -22,6 +25,7 @@ t_dirent	*get_files(const char *dir_name);
 void		main_view(int flag, char *str_dir);	
 void		file_view(int flag, t_dirent *f_list, char *path);
 void		l_view(int flag, t_dirent *f_list, char *path);
+void		printname(int flag, t_stat stat, t_dirent file, char *path);
 
 int			is_before(const char *first, const char *next);
 void		sort_alpha(t_dirent **f_list);

@@ -15,13 +15,11 @@ void	main_view(int flag, char *str_dir)
 
 void	file_view(int flag, t_dirent *f_list, char *path)
 {
-	sort_alpha(&f_list);
+	if (!(flag & LS_FLAG_MF))
+		sort_alpha(&f_list);
 	dbg_info("file_view", "Sorting done !", 2);
-	if (flag & (LS_FLAG_T | LS_FLAG_MR))
+	if ((flag & (LS_FLAG_T | LS_FLAG_MR)) && !(flag & LS_FLAG_MF))
 		sort(flag, f_list);
 	if (flag & LS_FLAG_L)
 		l_view(flag, f_list, path);
-	UNUSED(flag);
-	UNUSED(f_list);
 }
-
