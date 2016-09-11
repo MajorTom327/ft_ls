@@ -1,9 +1,11 @@
 #include <libft.h>
 #include <ft_ls.h>
+#include <stdio.h>
+#include <errno.h>
 
 void	exit_failure(void)
 {
-	ft_putendl("\033[31;5mAn error occured.\033[0m");
+	perror(strerror(errno));
 	exit(EXIT_FAILURE);
 }
 

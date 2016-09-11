@@ -48,7 +48,7 @@ void	sort_alpha(t_dirent **f_list)
 			}
 			i++;
 		}
-		*dir++;
+		dir++;
 	}
 }
 
