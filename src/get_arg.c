@@ -21,7 +21,7 @@ int		get_arg(char *arg)
 	i = (ft_strchr(arg, 'G') != NULL) ? i | LS_FLAG_G : i;
 	i = (ft_strchr(arg, '1') != NULL) ? i | LS_FLAG_1 : i;
 	i = (ft_strchr(arg, 'F') != NULL) ? i | LS_FLAG_F : i;
-	dbg_var_int("get_arg", "argument value:", i, 1);
+	dbg_var_int("get_arg", "argument value", i, 1);
 	return (i);
 }
 
