@@ -2,26 +2,26 @@
 #include "libft.h"
 #include "debug.h"
 
-//TODO: Change the temporary prototype to a prototype in ft_ls.h
-void file_view(int flag, t_dirent *f_list);
-
-void main_view(int flag, char *str_dir)
+void	main_view(int flag, char *str_dir)
 {
 	t_dirent *files;
 
-	UNUSED(flag);
 	files = get_files(str_dir);
 	dbg_info("main_view", "Files get OK", 1);
-	file_view(flag, files);
-	ft_memdel((void **)&files); 
+	dbg_var_str("main_view", "str_dir", str_dir, 2);
+	file_view(flag, files, str_dir);
+	ft_memdel((void **)&files);
 }
 
-void file_view(int flag, t_dirent *f_list)
+void	file_view(int flag, t_dirent *f_list, char *path)
 {
 	sort_alpha(&f_list);
 	dbg_info("file_view", "Sorting done !", 2);
 	if (flag & (LS_FLAG_T | LS_FLAG_MR))
 		sort(flag, f_list);
+	if (flag & LS_FLAG_L)
+		l_view(flag, f_list, path);
 	UNUSED(flag);
 	UNUSED(f_list);
 }
+

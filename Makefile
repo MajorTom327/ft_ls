@@ -6,7 +6,7 @@
 #    By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/29 21:15:40 by vthomas           #+#    #+#              #
-#    Updated: 2016/09/10 20:44:23 by vthomas          ###   ########.fr        #
+#    Updated: 2016/09/11 21:58:08 by vthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,8 @@ SRC_NAME=main.c\
 		get_arg.c\
 		ls_exit.c\
 		viewer.c\
-		sorting.c
+		sorting.c\
+		file_view.c
 INC_NAME=libft.h\
 		ft_ls.h\
 		debug.h

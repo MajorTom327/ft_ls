@@ -10,14 +10,18 @@
 # define LS_FLAG_F	0x40
 # define UNUSED(x) (void)x
 #include <dirent.h>
+#include <sys/stat.h>
 
 typedef struct dirent	t_dirent;
+typedef struct stat		t_stat;
 
 int			get_arg(char *arg);
 char		**get_dir(int ac, char **av);
 t_dirent	*get_files(const char *dir_name);
 
-void		main_view(int flag, char *str_dir);
+void		main_view(int flag, char *str_dir);	
+void		file_view(int flag, t_dirent *f_list, char *path);
+void		l_view(int flag, t_dirent *f_list, char *path);
 
 int			is_before(const char *first, const char *next);
 void		sort_alpha(t_dirent **f_list);
