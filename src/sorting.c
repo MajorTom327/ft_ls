@@ -1,5 +1,6 @@
 #include <ft_ls.h>
 #include <libft.h>
+#include <debug.h>
 
 
 void	sort(int flag, t_dirent *dir)
@@ -33,11 +34,13 @@ void	sort_alpha(t_dirent **f_list)
 
 	dir = *f_list;
 	exit_mem((tmp = (t_dirent *)ft_memalloc(sizeof(t_dirent*))));
-	while (dir)// [w] -> 1
+	while (dir->d_name[0] != '\0')// [w] -> 1
 	{
 		i = 0;
-		while (&dir[i] != NULL)// [w] -> 2
+		while (dir[i].d_name[0] != '\0')// [w] -> 2
 		{
+//			dbg_var_str("sort", "current file", dir[i].d_name, 3);
+//			dbg_breakpoint("sort", 1);
 			if (is_before(dir->d_name, dir[i].d_name))//TODO: comparaison de nom
 			{
 				ft_memswitch((void *)dir, (void *)&dir[i], sizeof(t_dirent));
