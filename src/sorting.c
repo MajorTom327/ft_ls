@@ -7,6 +7,7 @@ void	sort(int flag, t_dirent *dir)
 	unsigned int	i;
 	unsigned int	nb;
 
+	dbg_info("sorting", "Start sorting", 2);
 	if (flag & LS_FLAG_T)
 	{
 		//TODO:time sorting
@@ -15,9 +16,10 @@ void	sort(int flag, t_dirent *dir)
 	{
 		i = 0;
 		nb = 0;
-		while (&dir[nb++] != NULL)
+		while (dir[nb++].d_name[0] != '\0')
 			;
-		while (nb != 0)
+		nb -= 2;
+		while (nb > i)
 		{
 			ft_memswitch((void *)&dir[i], (void *)&dir[nb], sizeof(t_dirent));
 			i++;

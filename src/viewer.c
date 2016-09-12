@@ -2,7 +2,12 @@
 #include "libft.h"
 #include "debug.h"
 
-void	main_view(int flag, char *str_dir)
+static void	simple_list(int flag, t_dirent *f_list, char *path)
+{
+	
+}
+
+void		main_view(int flag, char *str_dir)
 {
 	t_dirent *files;
 
@@ -13,7 +18,7 @@ void	main_view(int flag, char *str_dir)
 	ft_memdel((void **)&files);
 }
 
-void	file_view(int flag, t_dirent *f_list, char *path)
+void		file_view(int flag, t_dirent *f_list, char *path)
 {
 	if (!(flag & LS_FLAG_MF))
 		sort_alpha(&f_list);
@@ -22,4 +27,6 @@ void	file_view(int flag, t_dirent *f_list, char *path)
 		sort(flag, f_list);
 	if (flag & LS_FLAG_L)
 		l_view(flag, f_list, path);
+	else
+		simple_list(flag, f_list, path);
 }

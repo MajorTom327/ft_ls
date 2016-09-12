@@ -24,6 +24,13 @@ int			get_arg(char *arg)
 	i = (ft_strchr(arg, 'F') != NULL) ? i | LS_FLAG_F : i;
 	i = (ft_strchr(arg, 'f') != NULL) ? i | LS_FLAG_MF | LS_FLAG_A : i;
 	i = (ft_strchr(arg, 'm') != NULL) ? i | LS_FLAG_M : i;
+	if (i == 0)
+	{
+		ft_putstr("ft_ls: illegal option -- ");
+		ft_putstr(&arg[1]);
+		ft_putstr("\nusage: ft_ls [-FGRaflmrt1] [file ...]\n");
+		exit(0);
+	}
 	dbg_var_int("get_arg", "argument value", i, 1);
 	return (i);
 }

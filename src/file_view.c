@@ -88,6 +88,7 @@ void		l_view(int flag, t_dirent *f_list, char *path)
 		last_time(stat, file_path);
 		printname(flag, stat, *f_list, file_path);
 		ft_putchar('\n');
+		ft_strdel(&file_path);
 		f_list++;
 	}
 }
