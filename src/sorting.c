@@ -30,6 +30,7 @@ void	sort(int flag, t_dirent *dir)
 
 void	sort_alpha(t_dirent **f_list)
 {
+	dbg_info("sort_alpha", "Starting...", 2);
 	size_t		i;
 	t_dirent	*dir;
 
@@ -39,30 +40,17 @@ void	sort_alpha(t_dirent **f_list)
 		i = 0;
 		while (dir[i].d_name[0] != '\0')
 		{
-			if (is_before(dir->d_name, dir[i].d_name))
+			if (ft_strcmp(dir->d_name, dir[i].d_name) > 0)
 			{
 				ft_memswitch((void *)dir, (void *)&dir[i], sizeof(t_dirent));
 				dir = *f_list;
+				i = 0;
 				break ;
 			}
 			i++;
 		}
-		dir++;
+		if (i != 0)
+			dir++;
 	}
-}
-
-int		is_before(const char *first, const char *next)
-{
-	int i;
-
-	i = 0;
-	while (first[i] && next[i])
-	{
-		if (first[i] > next[i])
-			return (1);
-		if (first[i] < next[i])
-			return (0);
-		i++;
-	}
-	return (0);
+	dbg_info("sort_alpha", "Done !", 2);
 }

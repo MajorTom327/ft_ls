@@ -1,10 +1,23 @@
 #include <ft_ls.h>
-#include "libft.h"
-#include "debug.h"
+#include <libft.h>
+#include <debug.h>
 
 static void	simple_list(int flag, t_dirent *f_list, char *path)
 {
-	
+	t_stat	stat;
+
+	while (f_list->d_name[0] != '\0')
+	{
+		lstat(path, &stat);
+		if (!(flag & LS_FLAG_A) && f_list->d_name[0] == '.')
+		{
+			f_list++;
+			continue;
+		}
+		printname(flag, stat, *f_list, path);
+		ft_putchar('\n');
+		f_list++;
+	}
 }
 
 void		main_view(int flag, char *str_dir)

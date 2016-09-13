@@ -6,7 +6,7 @@
 #    By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/29 21:15:40 by vthomas           #+#    #+#              #
-#    Updated: 2016/09/12 00:19:50 by vthomas          ###   ########.fr        #
+#    Updated: 2016/09/13 23:16:46 by vthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,7 @@ endif
 	@chmod +x $(NAME)
 
 # Compilation of all .c with modulable rule
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c 
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir -p $(OBJ_PATH)
 	@$(CC) $(CFLAGS) $(INC) -o $@ -c $<
 
@@ -97,12 +97,12 @@ fclean: clean
 test: re
 	@clear
 	@echo "\033[5;31;4m\t\tSTART TEST\033[0m\n"
-	@echo "\033[4m./ft_ls:\033[0m"
-	-@./$(NAME)
-	@echo "\n\n"
-	@echo "\033[4m./ft_ls ./include ./src:\033[0m"
-	-@./$(NAME) ./include ./src
-	@echo "\n\n"
+#	@echo "\033[4m./ft_ls:\033[0m"
+#	-@./$(NAME)
+#	@echo "\n\n"
+#	@echo "\033[4m./ft_ls ./include ./src:\033[0m"
+#	-@./$(NAME) ./include ./src
+#	@echo "\n\n"
 	@echo "\033[4m./ft_ls -GlaF ./:\033[0m"
 	-@./$(NAME) -GlaF ./
 
