@@ -56,9 +56,9 @@ static void	last_time(t_stat m_stat, char *path)
 
 	if (S_ISLNK(m_stat.st_mode))
 	{
-		stat(path, &m_stat);
+		lstat(path, &m_stat);
 	}
-	tmp = ctime(&m_stat.st_atimespec.tv_sec);
+	tmp = ctime(&m_stat.st_mtimespec.tv_sec);
 	tmp += 4;
 	tmp[ft_strlen(tmp) - 9] = '\0';
 	ft_putstr(tmp);

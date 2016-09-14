@@ -41,7 +41,8 @@ void		printname(int flag, t_stat stat, t_dirent file, char *path)
 	if (S_ISLNK(stat.st_mode))
 	{
 		ft_putstr(" -> ");
-		readlink(path, buf, 255);
+		buf = ft_strnew(1024);
+		readlink(path, buf, 1024);
 		ft_putstr(buf);
 	}
 	ft_strdel(&buf);

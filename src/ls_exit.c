@@ -12,8 +12,5 @@ void	exit_failure(void)
 void	exit_mem(void *mem)
 {
 	if (mem == NULL)
-	{
-		ft_putendl("\033[31mSomething is wrong with the memory...\033[0m");
 		exit_failure();
-	}
 }

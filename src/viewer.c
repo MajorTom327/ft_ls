@@ -37,7 +37,7 @@ void		file_view(int flag, t_dirent *f_list, char *path)
 		sort_alpha(&f_list);
 	dbg_info("file_view", "Sorting done !", 2);
 	if ((flag & (LS_FLAG_T | LS_FLAG_MR)) && !(flag & LS_FLAG_MF))
-		sort(flag, f_list);
+		sort(flag, f_list, path);
 	if (flag & LS_FLAG_L)
 		l_view(flag, f_list, path);
 	else
