@@ -4,8 +4,8 @@
 
 static void	sf_mainloop(int flag, char **dir)
 {
-	char **tmp;
-	int cnt;
+	char	**tmp;
+	int		cnt;
 
 	tmp = dir;
 	cnt = 0;

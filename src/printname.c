@@ -38,7 +38,7 @@ void		printname(int flag, t_stat stat, t_dirent file, char *path)
 		ft_putstr("\033[0m");
 	if (flag & LS_FLAG_F)
 		printchar(stat);
-	if (S_ISLNK(stat.st_mode))
+	if (S_ISLNK(stat.st_mode) && !(flag & LS_FLAG_L))
 	{
 		ft_putstr(" -> ");
 		buf = ft_strnew(1024);
