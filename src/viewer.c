@@ -22,7 +22,7 @@ static void	simple_list(int flag, t_dirent *f_list, char *path)
 
 void		main_view(int flag, char *str_dir)
 {
-	t_dirent *files;
+	t_dirent	*files;
 	t_stat		stat;
 	char		*fp;
 	char		**fn_list;
@@ -42,7 +42,7 @@ void		main_view(int flag, char *str_dir)
 		while (files->d_name[0] != '\0')
 		{
 			fp = ft_strdup(str_dir);
-			if (fp[ft_strlen(fp)] - 1 != '\n');
+			if (fp[ft_strlen(fp) - 1] != '\n')
 				fp = free_join(fp, "/");
 			fp = free_join(fp, files->d_name);
 			lstat(fp, &stat);
@@ -60,10 +60,15 @@ void		main_view(int flag, char *str_dir)
 		//dbg_var_array_str("main_view", "fn_list", fn_list, 2);
 		dbg_breakpoint("main_view", 2);
 		if (cnt != 0)
+		{
 			sf_mainloop(flag, fn_list);
-		ft_memdel((void **)&fn_list);
+			ft_memdel((void **)&fn_list);
+		}
+		//ft_memdel((void **)&fn_list);
 	}
+	dbg_info("main_view", "Before free files", 3);
 	ft_memdel((void **)&files);
+	dbg_info("main_view", "After free files", 3);
 }
 
 void		file_view(int flag, t_dirent *f_list, char *path)

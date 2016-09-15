@@ -11,7 +11,6 @@
 # define LS_FLAG_MF	0x0100
 # define LS_FLAG_M	0x0200
 
-# define UNUSED(x) (void)x
 # include <dirent.h>
 # include <sys/stat.h>
 
