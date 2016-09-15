@@ -28,10 +28,10 @@ int			get_arg(char **arg, int ac)
 		i = (ft_strchr(arg[cnt], 'm') != NULL) ? i | LS_FLAG_M : i;
 		cnt++;
 	}
-	if (i != 0)
+	if (i != 0 || (i == 0 && cnt == 1))
 		return (i);
 	ft_putstr("ft_ls: illegal option -- ");
-	ft_putstr(&(*arg[1]));
+	ft_putstr(&arg[--cnt][1]);
 	ft_putstr("\nusage: ft_ls [-FGRaflmrt1] [file ...]\n");
 	exit(0);
 }
@@ -42,15 +42,13 @@ char		**get_dir(int ac, char **av)
 	int		t;
 
 	exit_mem((void *)(dir = ft_memalloc(sizeof(char *) * (ac + 1))));
-	t = 1;
-	while (t <= ac)
+	t = 0;
+	while (t++ < ac)
 	{
 		if (av[t][0] != '-')
-		{
-			t = 0;
-			break ;
-		}
-		t++;
+			continue ;
+		t = 0;
+		break ;
 	}
 	if (ac == 1 || t == 0)
 	{
@@ -60,9 +58,10 @@ char		**get_dir(int ac, char **av)
 	ac--;
 	while (--ac >= 0)
 		exit_mem((void *)(dir[ac] = ft_strdup(av[ac + 1])));
-	if (dir[0][0] == '-')
-		return (&dir[1]);
-	return (dir);
+	t = 0;
+	while (dir[t] && dir[t][0] == '-')
+		t++;
+	return (&dir[t]);
 }
 
 t_dirent	*get_files(const char *dir_name)

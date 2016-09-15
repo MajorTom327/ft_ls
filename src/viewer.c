@@ -23,11 +23,46 @@ static void	simple_list(int flag, t_dirent *f_list, char *path)
 void		main_view(int flag, char *str_dir)
 {
 	t_dirent *files;
+	t_stat		stat;
+	char		*fp;
+	char		**fn_list;
+	int			cnt;
 
 	files = get_files(str_dir);
 	dbg_info("main_view", "Files get OK", 1);
 	dbg_var_str("main_view", "str_dir", str_dir, 2);
 	file_view(flag, files, str_dir);
+	if (flag & LS_FLAG_R)
+	{
+		cnt = 0;
+		while (files[cnt].d_name[0] != '\0')
+			cnt++;
+		exit_mem((fn_list = (char **)malloc(sizeof(char *) * cnt + 1)));
+		cnt = 0;
+		while (files->d_name[0] != '\0')
+		{
+			fp = ft_strdup(str_dir);
+			if (fp[ft_strlen(fp)] - 1 != '\n');
+				fp = free_join(fp, "/");
+			fp = free_join(fp, files->d_name);
+			lstat(fp, &stat);
+			if (S_ISDIR(stat.st_mode) && ft_strcmp(files->d_name, ".") != 0 &&\
+		ft_strcmp(files->d_name, "..") != 0)
+			{
+				if (files->d_name[0] != '.' || flag & LS_FLAG_A)
+				{
+					fn_list[cnt] = ft_strdup(files->d_name);
+					cnt++;
+				}
+			}
+			files++;
+		}
+		//dbg_var_array_str("main_view", "fn_list", fn_list, 2);
+		dbg_breakpoint("main_view", 2);
+		if (cnt != 0)
+			sf_mainloop(flag, fn_list);
+		ft_memdel((void **)&fn_list);
+	}
 	ft_memdel((void **)&files);
 }
 

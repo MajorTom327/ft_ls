@@ -2,7 +2,7 @@
 #include <ft_ls.h>
 #include "debug.h"
 
-static void	sf_mainloop(int flag, char **dir)
+void	sf_mainloop(int flag, char **dir)
 {
 	char	**tmp;
 	int		cnt;
@@ -33,16 +33,18 @@ int			main(int ac, char **av)
 {
 	char	**dir;
 	int		flag;
-	int		count;
 
-	UNUSED(count);
 	flag = 0;
 	dbg_title("FT_LS");
 	dbg_var_int("main", "ac", ac, 0);
 	if (ac > 1)
 		flag = get_arg(av, ac);
+	ft_putendl("\033[32m[OK]\033[0m\tArgument");
 	dir = get_dir(ac, av);
+	ft_putendl("\033[32m[OK]\033[0m\tDirectory");
+	dbg_var_array_str("main", "args list", (const char **)av, 0);
 	dbg_var_array_str("main", "dir list", (const char **)dir, 0);
+	dbg_var_str("main", "dir[0]", dir[0], 0);
 	sf_mainloop(flag, dir);
 	dbg_title("FREEING THE MEMORY");
 	if (flag != 0)

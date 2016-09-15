@@ -12,11 +12,13 @@
 # define LS_FLAG_M	0x0200
 
 # define UNUSED(x) (void)x
-#include <dirent.h>
-#include <sys/stat.h>
+# include <dirent.h>
+# include <sys/stat.h>
 
 typedef struct dirent	t_dirent;
 typedef struct stat		t_stat;
+
+void		sf_mainloop(int flag, char **dir);
 
 int			get_arg(char **arg, int ac);
 char		**get_dir(int ac, char **av);
