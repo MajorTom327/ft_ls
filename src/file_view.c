@@ -1,5 +1,4 @@
 #include <ft_ls.h>
-#include <debug.h>
 #include <libft.h>
 #include <sys/stat.h>
 #include <pwd.h>

@@ -1,6 +1,5 @@
 #include <ft_ls.h>
 #include <libft.h>
-#include <debug.h>
 
 /*
 ** get_arg
@@ -79,7 +78,6 @@ t_dirent	*get_files(const char *dir_name)
 	closedir(directory);
 	directory = opendir(dir_name);
 	exit_mem((void *)directory);
-	//files = ft_memalloc(sizeof(t_dirent) * i);
 	exit_mem((files = ft_memalloc(sizeof(t_dirent) * i)));
 	while ((tmp = readdir(directory)) != NULL)
 		ft_memcpy((void *)&files[--i], (void *)tmp, sizeof(t_dirent));

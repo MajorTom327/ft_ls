@@ -1,13 +1,11 @@
 #include <ft_ls.h>
 #include <libft.h>
-#include <debug.h>
 
 void	sort(int flag, t_dirent *dir, char *path)
 {
 	unsigned int	i;
 	unsigned int	nb;
 
-	dbg_info("sorting", "Start sorting", 2);
 	if (flag & LS_FLAG_T)
 	{
 		time_sort(dir, path);

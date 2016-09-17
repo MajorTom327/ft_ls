@@ -1,6 +1,5 @@
 #include <ft_ls.h>
 #include <libft.h>
-#include <debug.h>
 
 static void	simple_list(int flag, t_dirent *f_list, char *path)
 {
@@ -29,8 +28,6 @@ void		main_view(int flag, char *str_dir)
 	int			cnt;
 
 	files = get_files(str_dir);
-	dbg_info("main_view", "Files get OK", 1);
-	dbg_var_str("main_view", "str_dir", str_dir, 2);
 	file_view(flag, files, str_dir);
 	if (flag & LS_FLAG_R)
 	{
@@ -57,25 +54,18 @@ void		main_view(int flag, char *str_dir)
 			}
 			files++;
 		}
-		//dbg_var_array_str("main_view", "fn_list", fn_list, 2);
-		dbg_breakpoint("main_view", 2);
 		if (cnt != 0)
 		{
 			sf_mainloop(flag, fn_list);
 			ft_memdel((void **)&fn_list);
 		}
-		//ft_memdel((void **)&fn_list);
 	}
-	dbg_info("main_view", "Before free files", 3);
-	ft_memdel((void **)&files);
-	dbg_info("main_view", "After free files", 3);
 }
 
 void		file_view(int flag, t_dirent *f_list, char *path)
 {
 	if (!(flag & LS_FLAG_MF))
 		sort_alpha(&f_list);
-	dbg_info("file_view", "Sorting done !", 2);
 	if ((flag & (LS_FLAG_T | LS_FLAG_MR)) && !(flag & LS_FLAG_MF))
 		sort(flag, f_list, path);
 	if (flag & LS_FLAG_L)

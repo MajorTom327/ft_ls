@@ -6,7 +6,7 @@
 #    By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/29 21:15:40 by vthomas           #+#    #+#              #
-#    Updated: 2016/09/13 23:16:46 by vthomas          ###   ########.fr        #
+#    Updated: 2016/09/17 01:45:06 by vthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,12 +40,9 @@ SRC_NAME=main.c\
 		file_view.c\
 		printname.c
 INC_NAME=libft.h\
-		ft_ls.h\
-		debug.h
+		ft_ls.h
 OBJ_NAME=$(SRC_NAME:.c=.o)
-LIB_NAME=libft\
-		 libdbg
-
+LIB_NAME=libft
 
 SRC=$(addprefix $(SRC_PATH),$(SRC_NAME))
 INC=$(addprefix -I, $(INC_PATH))
@@ -108,3 +105,5 @@ test: re
 
 norme:
 	@norminette $(SRC) $(addprefix $(INC_PATH),$(INC_NAME))
+
+.PHONY: clean

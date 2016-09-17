@@ -1,6 +1,5 @@
 #include "libft.h"
 #include <ft_ls.h>
-#include "debug.h"
 
 void	sf_mainloop(int flag, char **dir)
 {
@@ -15,18 +14,17 @@ void	sf_mainloop(int flag, char **dir)
 		cnt++;
 	}
 	dir = tmp;
-	dbg_title("MAIN LOOP");
 	while (*dir)
 	{
 		if (cnt > 1)
 		{
+			ft_putchar('\n');
 			ft_putstr(*dir);
 			ft_putendl(":");
 		}
 		main_view(flag, *dir);
 		dir++;
 	}
-	dbg_title("EXITING MAIN LOOP");
 }
 
 int			main(int ac, char **av)
@@ -35,22 +33,13 @@ int			main(int ac, char **av)
 	int		flag;
 
 	flag = 0;
-	dbg_title("FT_LS");
-	dbg_var_int("main", "ac", ac, 0);
 	if (ac > 1)
 		flag = get_arg(av, ac);
-	ft_putendl("\033[32m[OK]\033[0m\tArgument");
 	dir = get_dir(ac, av);
-	ft_putendl("\033[32m[OK]\033[0m\tDirectory");
-	dbg_var_array_str("main", "args list", (const char **)av, 0);
-	dbg_var_array_str("main", "dir list", (const char **)dir, 0);
-	dbg_var_str("main", "dir[0]", dir[0], 0);
 	sf_mainloop(flag, dir);
-	dbg_title("FREEING THE MEMORY");
 	if (flag != 0)
 		ft_memdel((void **)--dir);
 	else
 		ft_memdel((void **)dir);
-	dbg_title("END FT_LS");
 	return (0);
 }
