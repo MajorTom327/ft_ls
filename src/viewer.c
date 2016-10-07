@@ -3,17 +3,22 @@
 
 static void	simple_list(int flag, t_dirent *f_list, char *path)
 {
-	t_stat	stat;
+	t_stat	st;
+	char	*str;
 
 	while (f_list->d_name[0] != '\0')
 	{
-		lstat(path, &stat);
+		str = ft_strdup(path);
+		str = free_join(str, "/");
+		str = free_join(str, f_list->d_name);
+		lstat(str, &st);
+		ft_strdel(&str);
 		if (!(flag & LS_FLAG_A) && f_list->d_name[0] == '.')
 		{
 			f_list++;
 			continue;
 		}
-		printname(flag, stat, *f_list, path);
+		printname(flag, st, *f_list, path);
 		ft_putchar('\n');
 		f_list++;
 	}
