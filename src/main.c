@@ -33,12 +33,9 @@ int			main(int ac, char **av)
 	int		flag;
 
 	flag = 0;
-	ft_putendl("OK START");
 	if (ac > 2)
 		flag = get_arg(av, ac);
-	ft_putendl("FLAG OK");
 	dir = get_dir(ac, av);
-	ft_putendl("DIR OK");
 	sf_mainloop(flag, dir);
 	if (flag != 0)
 		ft_memdel((void **)--dir);

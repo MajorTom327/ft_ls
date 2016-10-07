@@ -44,18 +44,18 @@ char		**get_dir(int ac, char **av)
 	t = 0;
 	while (++t < ac)
 	{
-		if (av[t][0] != '-')
+		if (av[t][0] == '-')
 			continue ;
 		t = 0;
 		break ;
 	}
-	if (ac == 1 || t == 0)
+	if (ac == 1 || (t != 0 && t == ac))
 	{
 		dir[0] = ft_strdup("./");
 		return (dir);
 	}
 	ac--;
-	while (--ac > 0)
+	while (--ac >= 0)
 		exit_mem((void *)(dir[ac] = ft_strdup(av[ac + 1])));
 	t = 0;
 	while (dir[t] && dir[t][0] == '-')
