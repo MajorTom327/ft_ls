@@ -41,8 +41,8 @@ char		**get_dir(int ac, char **av)
 	int		t;
 
 	exit_mem((void *)(dir = ft_memalloc(sizeof(char *) * (ac + 1))));
-	t = 1;
-	while (t++ < ac)
+	t = 0;
+	while (++t < ac)
 	{
 		if (av[t][0] != '-')
 			continue ;
@@ -55,7 +55,7 @@ char		**get_dir(int ac, char **av)
 		return (dir);
 	}
 	ac--;
-	while (--ac >= 0)
+	while (--ac > 0)
 		exit_mem((void *)(dir[ac] = ft_strdup(av[ac + 1])));
 	t = 0;
 	while (dir[t] && dir[t][0] == '-')
