@@ -16,7 +16,7 @@ NAME=ft_ls
 DEBUG=yes
 CC=gcc
 ifeq ($(DEBUG),yes)
-	CFLAGS= -Wall -Wextra -g -D DEBUG
+	CFLAGS= -Wall -Wextra -g -D DEBUG -Weverything
 else
 	CFLAGS=-Wall -Wextra -Werror
 endif

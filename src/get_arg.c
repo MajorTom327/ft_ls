@@ -40,7 +40,7 @@ char		**get_dir(int ac, char **av)
 	char	**dir;
 	int		t;
 
-	exit_mem((void *)(dir = ft_memalloc(sizeof(char *) * (ac + 1))));
+	exit_mem((void *)(dir = ft_memalloc(sizeof(char *) * (size_t)(ac + 1))));
 	t = 0;
 	while (++t < ac)
 	{
@@ -71,6 +71,7 @@ t_dirent	*get_files(const char *dir_name)
 	int			i;
 
 	directory = opendir(dir_name);
+
 	exit_mem((void *)directory);
 	i = 0;
 	while ((tmp = readdir(directory)) != NULL)
@@ -78,7 +79,7 @@ t_dirent	*get_files(const char *dir_name)
 	closedir(directory);
 	directory = opendir(dir_name);
 	exit_mem((void *)directory);
-	exit_mem((files = ft_memalloc(sizeof(t_dirent) * i)));
+	exit_mem((files = ft_memalloc(sizeof(t_dirent) * (size_t)i)));
 	while ((tmp = readdir(directory)) != NULL)
 		ft_memcpy((void *)&files[--i], (void *)tmp, sizeof(t_dirent));
 	closedir(directory);

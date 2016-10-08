@@ -28,11 +28,11 @@ void	sort(int flag, t_dirent *dir, char *path)
 
 void	time_sort(t_dirent *dir, char *path)
 {
-	t_stat	m_stat;
-	int		nb_file;
-	int		i;
-	int		*date;
-	char	*file_path;
+	t_stat			m_stat;
+	unsigned int	nb_file;
+	unsigned int	i;
+	int				*date;
+	char			*file_path;
 
 	nb_file = 0;
 	i = 0;
@@ -42,16 +42,16 @@ void	time_sort(t_dirent *dir, char *path)
 	while (i < nb_file)
 	{
 		file_path = ft_strdup(path);
-		if (file_path[ft_strlen(file_path) - 1] != '/')
+		if (file_path[ft_strlen(file_path)] != '/')
 			file_path = free_join(file_path, "/");
 		file_path = free_join(file_path, dir[i].d_name);
 		lstat(file_path, &m_stat);
-		date[i] = m_stat.st_mtimespec.tv_sec;
+		date[i] = (int)m_stat.st_mtimespec.tv_sec;
 		ft_strdel(&file_path);
 		i++;
 	}
 	i = 0;
-	ft_tablesort(date, nb_file, dir);
+	ft_tablesort(date, (int)nb_file, dir);
 	ft_memdel((void **)&date);
 }
 

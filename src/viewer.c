@@ -32,31 +32,34 @@ void		main_view(int flag, char *str_dir)
 	char		**fn_list;
 	int			cnt;
 
-	files = get_files(str_dir);
+	files = get_files(str_dir);//TODO: ICI
+	if (files == NULL)
+		return ;
 	file_view(flag, files, str_dir);
 	if (flag & LS_FLAG_R)
 	{
 		cnt = 0;
 		while (files[cnt].d_name[0] != '\0')
 			cnt++;
-		exit_mem((fn_list = (char **)malloc(sizeof(char *) * cnt + 1)));
+		exit_mem((fn_list = (char **)malloc(sizeof(char *) * (size_t)cnt + 1)));
 		cnt = 0;
 		while (files->d_name[0] != '\0')
 		{
 			fp = ft_strdup(str_dir);
-			if (fp[ft_strlen(fp) - 1] != '\n')
+			if (fp[ft_strlen(fp) - 1] != '/')
 				fp = free_join(fp, "/");
 			fp = free_join(fp, files->d_name);
 			lstat(fp, &stat);
 			if (S_ISDIR(stat.st_mode) && ft_strcmp(files->d_name, ".") != 0 &&\
-		ft_strcmp(files->d_name, "..") != 0)
+				ft_strcmp(files->d_name, "..") != 0)
 			{
 				if (files->d_name[0] != '.' || flag & LS_FLAG_A)
 				{
-					fn_list[cnt] = ft_strdup(files->d_name);
+					fn_list[cnt] = ft_strdup(fp);
 					cnt++;
 				}
 			}
+			ft_strdel(&fp);
 			files++;
 		}
 		if (cnt != 0)
