@@ -83,7 +83,8 @@ void		l_view(int flag, t_dirent *f_list, char *path)
 		permission(stat);
 		username(stat);
 		ft_putnbr((int)stat.st_size);
-		ft_putstr(stat.st_size > 9999 ? "\t" : "  \t");
+		ft_putstr(stat.st_size > 9999 ? "\t" : ((stat.st_size < 10) ?\
+			"\t\t" : "  \t"));
 		last_time(stat, file_path);
 		printname(flag, stat, *f_list, file_path);
 		ft_putchar('\n');

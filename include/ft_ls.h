@@ -33,7 +33,7 @@ void		sort(int flag, t_dirent *dir, char *path);
 void		time_sort(t_dirent *dir, char *path);
 void		ft_tablesort(int *t, int len, t_dirent *d);
 
-void		exit_failure(void);
+void		exit_failure(void) __attribute__ ((noreturn));
 void		exit_mem(void *mem);
 
 #endif
