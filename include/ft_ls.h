@@ -17,11 +17,11 @@
 typedef struct dirent	t_dirent;
 typedef struct stat		t_stat;
 
-void		sf_mainloop(int flag, char **dir);
+void		sf_mainloop(int flag, char **dir, int st);
 
 int			get_arg(char **arg, int ac);
 char		**get_dir(int ac, char **av);
-t_dirent	*get_files(const char *dir_name);
+t_dirent	*get_files(char *dir_name);
 
 void		main_view(int flag, char *str_dir);
 void		file_view(int flag, t_dirent *f_list, char *path);

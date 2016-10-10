@@ -7,9 +7,7 @@ void	sort(int flag, t_dirent *dir, char *path)
 	unsigned int	nb;
 
 	if (flag & LS_FLAG_T)
-	{
 		time_sort(dir, path);
-	}
 	if (flag & LS_FLAG_MR)
 	{
 		i = 0;
@@ -51,7 +49,6 @@ void	time_sort(t_dirent *dir, char *path)
 		ft_strdel(&file_path);
 		i++;
 	}
-	i = 0;
 	ft_tablesort(date, (int)nb_file, dir);
 	ft_memdel((void **)&date);
 }

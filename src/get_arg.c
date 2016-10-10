@@ -1,5 +1,7 @@
 #include <ft_ls.h>
 #include <libft.h>
+#include <errno.h>
+#include <stdio.h>
 
 /*
 ** get_arg
@@ -55,8 +57,7 @@ char		**get_dir(int ac, char **av)
 		dir[1] = ft_strnew(0);
 		return (dir);
 	}
-	ac--;
-	dir[ac] = ft_strnew(0);
+	dir[--ac] = ft_strnew(0);
 	while (--ac >= 0)
 		exit_mem((void *)(dir[ac] = ft_strdup(av[ac + 1])));
 	t = 0;
@@ -65,16 +66,22 @@ char		**get_dir(int ac, char **av)
 	return (&dir[t]);
 }
 
-t_dirent	*get_files(const char *dir_name)
+t_dirent	*get_files(char *dir_name)
 {
 	DIR			*directory;
 	t_dirent	*files;
 	t_dirent	*tmp;
 	int			i;
+	char		*str;
 
 	directory = opendir(dir_name);
-
-	exit_mem((void *)directory);
+	if (directory == NULL)
+	{
+		str = ft_strdup("ft_ls: ");
+		str = free_join(str, dir_name);
+		perror(str);
+		return (NULL);
+	}
 	i = 0;
 	while ((tmp = readdir(directory)) != NULL)
 		i++;

@@ -32,7 +32,7 @@ void		main_view(int flag, char *str_dir)
 	char		**fn_list;
 	int			cnt;
 
-	files = get_files(str_dir);//TODO: ICI
+	files = get_files(str_dir);
 	if (files == NULL)
 		return ;
 	file_view(flag, files, str_dir);
@@ -43,6 +43,7 @@ void		main_view(int flag, char *str_dir)
 			cnt++;
 		exit_mem((fn_list = (char **)malloc(sizeof(char *) * (size_t)cnt + 1)));
 		cnt = 0;
+//* ************************************************************************ *//
 		while (files->d_name[0] != '\0')
 		{
 			fp = ft_strdup(str_dir);
@@ -63,10 +64,11 @@ void		main_view(int flag, char *str_dir)
 			ft_strdel(&fp);
 			files++;
 		}
+//* ************************************************************************ *//
 		if (cnt != 0)
 		{
 			fn_list[cnt] = ft_strnew(0);
-			sf_mainloop(flag, fn_list);
+			sf_mainloop(flag, fn_list, 0);
 			ft_memdel((void **)&fn_list);
 		}
 	}
