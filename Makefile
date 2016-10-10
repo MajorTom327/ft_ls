@@ -51,7 +51,7 @@ LIB=$(addprefix $(LIB_PATH),$(LIB_NAME))
 
 # Specific to the lib utilisation (More usefull)
 #LIB_FILE=$(addprefix $(LIB),/$(addprefix $(LIB_NAME),.a))
-LIB_FILE = ./libdbg/libdbg.a ./libft/libft.a
+LIB_FILE = ./libft/libft.a
 
 #* *********************************************** *#
 #*                    MAIN RULES                   *#
