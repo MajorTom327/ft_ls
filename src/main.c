@@ -3,27 +3,20 @@
 
 void	sf_mainloop(int flag, char **dir)
 {
-	char	**tmp;
 	int		cnt;
 
-	tmp = dir;
 	cnt = 0;
-	while (*dir)
+	while (dir[cnt][0] != '\0')
 	{
-		dir++;
-		cnt++;
-	}
-	dir = tmp;
-	while (*dir)
-	{
+		ft_putendl_fd(dir[cnt], 2);
 		if (cnt > 1)
 		{
 			ft_putchar('\n');
 			ft_putstr(*dir);
 			ft_putendl(":");
 		}
-		main_view(flag, *dir);
-		dir++;
+		main_view(flag, dir[cnt]);
+		cnt++;
 	}
 }
 

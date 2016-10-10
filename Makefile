@@ -14,7 +14,7 @@
 NAME=ft_ls
 #Debugging commande (yes/no)
 DEBUG=yes
-CC=gcc
+CC=clang
 ifeq ($(DEBUG),yes)
 	CFLAGS= -Wall -Wextra -g -D DEBUG -Weverything
 else
@@ -58,13 +58,14 @@ LIB_FILE = ./libdbg/libdbg.a ./libft/libft.a
 #* There, it's the rules who compilate the program *#
 #* *********************************************** *#
 all: $(NAME)
-$(NAME): lib $(OBJ)
+$(NAME): lib
 ifeq ($(DEBUG),yes)
 	@echo "\033[32m[MAIN]\033[0m\033[5;31m\t\t(debug)\033[0m"
 else
 	@echo "\033[32m[MAIN]\t\t(release)\033[0m"
 endif
-	@$(CC) $(CFLAGS) -o $(NAME) $(INC) $(OBJ) $(LIB_FILE)
+	@echo $(CFLAGS)
+	@$(CC) $(CFLAGS) -o $(NAME) $(INC) $(SRC) $(LIB_FILE)
 	@chmod +x $(NAME)
 
 # Compilation of all .c with modulable rule
@@ -100,8 +101,10 @@ test: re
 #	@echo "\033[4m./ft_ls ./include ./src:\033[0m"
 #	-@./$(NAME) ./include ./src
 #	@echo "\n\n"
-	@echo "\033[4m./ft_ls -GlaF ./:\033[0m"
-	-@./$(NAME) -GlaF ./
+#	@echo "\033[4m./ft_ls -GlaF ./:\033[0m"
+#	-@./$(NAME) -GlaF ./
+	@echo "\033[4m./ft_ls -G -l -a -R:\033[0m"
+	-@./$(NAME) -G -l -a -R
 
 norme:
 	@norminette $(SRC) $(addprefix $(INC_PATH),$(INC_NAME))

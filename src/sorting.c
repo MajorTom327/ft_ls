@@ -42,7 +42,8 @@ void	time_sort(t_dirent *dir, char *path)
 	while (i < nb_file)
 	{
 		file_path = ft_strdup(path);
-		if (file_path[ft_strlen(file_path)] != '/')
+		exit_mem(file_path);
+		if (file_path[ft_strlen(file_path) - 1] != '/')
 			file_path = free_join(file_path, "/");
 		file_path = free_join(file_path, dir[i].d_name);
 		lstat(file_path, &m_stat);

@@ -46,6 +46,7 @@ void		main_view(int flag, char *str_dir)
 		while (files->d_name[0] != '\0')
 		{
 			fp = ft_strdup(str_dir);
+			exit_mem(fp);
 			if (fp[ft_strlen(fp) - 1] != '/')
 				fp = free_join(fp, "/");
 			fp = free_join(fp, files->d_name);
@@ -64,6 +65,7 @@ void		main_view(int flag, char *str_dir)
 		}
 		if (cnt != 0)
 		{
+			fn_list[cnt] = ft_strnew(0);
 			sf_mainloop(flag, fn_list);
 			ft_memdel((void **)&fn_list);
 		}
