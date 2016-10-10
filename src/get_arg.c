@@ -52,9 +52,11 @@ char		**get_dir(int ac, char **av)
 	if (ac == 1 || (t != 0 && t == ac))
 	{
 		dir[0] = ft_strdup("./");
+		dir[1] = ft_strnew(0);
 		return (dir);
 	}
 	ac--;
+	dir[ac] = ft_strnew(0);
 	while (--ac >= 0)
 		exit_mem((void *)(dir[ac] = ft_strdup(av[ac + 1])));
 	t = 0;

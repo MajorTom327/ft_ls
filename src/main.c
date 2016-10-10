@@ -8,7 +8,6 @@ void	sf_mainloop(int flag, char **dir)
 	cnt = 0;
 	while (dir[cnt][0] != '\0')
 	{
-		ft_putendl_fd(dir[cnt], 2);
 		if (cnt > 1)
 		{
 			ft_putchar('\n');

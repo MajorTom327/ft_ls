@@ -42,10 +42,10 @@ static void	username(t_stat stat)
 	ft_putnbr(stat.st_nlink);
 	ft_putstr("  ");
 	usr = getpwuid(stat.st_uid);
-	ft_putstr(usr->pw_name);
+	ft_putstr((usr != NULL) ? usr->pw_name : ft_itoa((int)stat.st_uid));
 	ft_putstr("  ");
 	grp = getgrgid(stat.st_gid);
-	ft_putstr(grp->gr_name);
+	ft_putstr((grp != NULL) ? grp->gr_name : ft_itoa((int)stat.st_gid));
 	ft_putstr("  ");
 }
 
