@@ -6,7 +6,7 @@
 /*   By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/11 11:16:01 by vthomas           #+#    #+#             */
-/*   Updated: 2016/10/11 14:02:09 by vthomas          ###   ########.fr       */
+/*   Updated: 2016/10/11 20:12:33 by vthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,8 @@
 #include <uuid/uuid.h>
 #include <time.h>
 
-static void	permission(t_stat stat, int flag)
+static void	permission(t_stat stat)
 {
-	if (flag & LS_FLAG_I)
-	{
-		ft_putnbr((int)stat.st_ino);
-		ft_putchar(' ');
-	}
 	if (S_ISDIR(stat.st_mode))
 		ft_putchar('d');
 	else if (S_ISLNK(stat.st_mode))
@@ -50,7 +45,7 @@ static void	permission(t_stat stat, int flag)
 	ft_putchar((stat.st_mode & S_IXOTH) ? 'x' : '-');
 }
 
-static void	username(t_stat stat)
+static void	username(t_stat stat, int flag)
 {
 	struct passwd	*usr;
 	struct group	*grp;
@@ -59,11 +54,17 @@ static void	username(t_stat stat)
 	ft_putnbr(stat.st_nlink);
 	ft_putstr("  ");
 	usr = getpwuid(stat.st_uid);
-	ft_putstr((usr != NULL) ? usr->pw_name : ft_itoa((int)stat.st_uid));
-	ft_putstr("  ");
+	if (!(flag & LS_FLAG_MG))
+	{
+		ft_putstr((usr != NULL && !(flag & LS_FLAG_N)) ? usr->pw_name :\
+			ft_itoa((int)stat.st_uid));
+		ft_putstr("  ");
+	}
 	grp = getgrgid(stat.st_gid);
-	ft_putstr((grp != NULL) ? grp->gr_name : ft_itoa((int)stat.st_gid));
-	ft_putstr("  ");
+	ft_putstr((grp != NULL && !(flag & LS_FLAG_N)) ? grp->gr_name :\
+		ft_itoa((int)stat.st_gid));
+	if (flag & LS_FLAG_O)
+		ft_putstr("  -");
 }
 
 static void	last_time(t_stat m_stat, char *path)
@@ -81,31 +82,30 @@ static void	last_time(t_stat m_stat, char *path)
 	ft_putchar(' ');
 }
 
-void		l_view(int flag, t_dirent *f_list, char *path)
+void		l_view(int flag, t_dirent *f, char *path)
 {
 	t_stat	stat;
 	char	*file_path;
 
-	while (f_list->d_name[0] != '\0')
+	while (f->d_name[0] != '\0')
 	{
-		if (!(flag & LS_FLAG_A) && f_list->d_name[0] == '.')
+		if ((flag & LS_FLAG_A && f->d_name[0] == '.') || f->d_name[0] != '.')
 		{
-			f_list++;
-			continue;
+			file_path = ft_strdup(path);
+			file_path = free_join(file_path, "/");
+			file_path = free_join(file_path, f->d_name);
+			opt_1(flag, file_path, f->d_name);
+			lstat(file_path, &stat);
+			permission(stat);
+			username(stat, flag);
+			put_space((int)stat.st_size, 7);
+			ft_putnbr((int)stat.st_size);
+			ft_putchar(' ');
+			last_time(stat, file_path);
+			printname(flag, stat, *f, file_path);
+			ft_putchar('\n');
+			ft_strdel(&file_path);
 		}
-		file_path = ft_strdup(path);
-		file_path = free_join(file_path, "/");
-		file_path = free_join(file_path, f_list->d_name);
-		lstat(file_path, &stat);
-		permission(stat, flag);
-		username(stat);
-		ft_putnbr((int)stat.st_size);
-		ft_putstr(stat.st_size > 9999 ? "\t" : ((stat.st_size < 10) ?\
-			"\t\t" : "  \t"));
-		last_time(stat, file_path);
-		printname(flag, stat, *f_list, file_path);
-		ft_putchar('\n');
-		ft_strdel(&file_path);
-		f_list++;
+		f++;
 	}
 }

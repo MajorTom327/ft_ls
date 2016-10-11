@@ -6,7 +6,7 @@
 /*   By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/11 11:16:22 by vthomas           #+#    #+#             */
-/*   Updated: 2016/10/11 13:07:06 by vthomas          ###   ########.fr       */
+/*   Updated: 2016/10/11 20:28:47 by vthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	sort(int flag, t_dirent *dir, char *path)
 	unsigned int	nb;
 
 	if (flag & LS_FLAG_T)
-		time_sort(dir, path);
+		time_sort(dir, path, flag);
 	if (flag & LS_FLAG_MR)
 	{
 		i = 0;
@@ -36,7 +36,7 @@ void	sort(int flag, t_dirent *dir, char *path)
 	}
 }
 
-void	time_sort(t_dirent *dir, char *path)
+void	time_sort(t_dirent *dir, char *path, int flag)
 {
 	t_stat			m_stat;
 	unsigned int	nb_file;
@@ -57,7 +57,10 @@ void	time_sort(t_dirent *dir, char *path)
 			file_path = free_join(file_path, "/");
 		file_path = free_join(file_path, dir[i].d_name);
 		lstat(file_path, &m_stat);
-		date[i] = (int)m_stat.st_mtimespec.tv_sec;
+		if (flag & LS_FLAG_MU)
+			date[i] = (int)m_stat.st_ctimespec.tv_sec;
+		else
+			date[i] = (int)m_stat.st_mtimespec.tv_sec;
 		ft_strdel(&file_path);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/11 11:16:06 by vthomas           #+#    #+#             */
-/*   Updated: 2016/10/11 14:02:45 by vthomas          ###   ########.fr       */
+/*   Updated: 2016/10/11 20:46:20 by vthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,24 +29,14 @@ int			get_arg(char **arg, int ac)
 	cnt = 1;
 	while (cnt < ac && arg[cnt][0] == '-')
 	{
-		i = (ft_strchr(arg[cnt], 'l') != NULL) ? i | LS_FLAG_L : i;
-		i = (ft_strchr(arg[cnt], 'R') != NULL) ? i | LS_FLAG_R : i;
-		i = (ft_strchr(arg[cnt], 'a') != NULL) ? i | LS_FLAG_A : i;
-		i = (ft_strchr(arg[cnt], 'r') != NULL) ? i | LS_FLAG_MR : i;
-		i = (ft_strchr(arg[cnt], 't') != NULL) ? i | LS_FLAG_T : i;
-		i = (ft_strchr(arg[cnt], 'G') != NULL) ? i | LS_FLAG_G : i;
-		i = (ft_strchr(arg[cnt], '1') != NULL) ? i | LS_FLAG_1 : i;
-		i = (ft_strchr(arg[cnt], 'F') != NULL) ? i | LS_FLAG_F : i;
-		i = (ft_strchr(arg[cnt], 'f') != NULL) ? i | LS_FLAG_MF | LS_FLAG_A : i;
-		i = (ft_strchr(arg[cnt], 'm') != NULL) ? i | LS_FLAG_M : i;
-		i = (ft_strchr(arg[cnt], 'i') != NULL) ? i | LS_FLAG_I : i;
+		i = get_flag(i, arg[cnt]);
 		cnt++;
 	}
 	if (i != 0 || (i == 0 && cnt == 1))
 		return (i);
 	ft_putstr("ft_ls: illegal option -- ");
 	ft_putstr(&arg[--cnt][1]);
-	ft_putstr("\nusage: ft_ls [-FGRaflmrt1] [file ...]\n");
+	ft_putstr("\nusage: ft_ls [-afFgGilmnOrRstu] [directory ...]\n");
 	exit(0);
 }
 
@@ -76,7 +66,7 @@ void		bsize(char *dir, t_dirent *f, int flag)
 	ft_putnbr_endl(bs);
 }
 
-char		**get_dir(int ac, char **av)
+char		**get_dir(int ac, char **av, int *cnt)
 {
 	char	**dir;
 	int		t;
@@ -90,6 +80,7 @@ char		**get_dir(int ac, char **av)
 		t = 0;
 		break ;
 	}
+	*cnt = t;
 	if (ac == 1 || (t != 0 && t == ac))
 	{
 		dir[0] = ft_strdup("./");

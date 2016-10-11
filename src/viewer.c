@@ -6,7 +6,7 @@
 /*   By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/11 11:16:26 by vthomas           #+#    #+#             */
-/*   Updated: 2016/10/11 12:36:02 by vthomas          ###   ########.fr       */
+/*   Updated: 2016/10/11 20:13:59 by vthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	simple_list(int flag, t_dirent *f_list, char *path)
 		str = ft_strdup(path);
 		str = free_join(str, "/");
 		str = free_join(str, f_list->d_name);
+		opt_1(flag, str, f_list->d_name);
 		lstat(str, &st);
 		ft_strdel(&str);
 		if (!(flag & LS_FLAG_A) && f_list->d_name[0] == '.')
@@ -31,7 +32,10 @@ static void	simple_list(int flag, t_dirent *f_list, char *path)
 			continue;
 		}
 		printname(flag, st, *f_list, path);
-		ft_putchar('\n');
+		if (flag & LS_FLAG_M && (f_list + 1)->d_name[0])
+			ft_putstr(", ");
+		else
+			ft_putchar('\n');
 		f_list++;
 	}
 }
@@ -72,6 +76,8 @@ void		main_view(int flag, char *str_dir)
 	files = get_files(str_dir);
 	if (files == NULL)
 		return ;
+	if (flag & LS_FLAG_M)
+		flag -= (flag & LS_FLAG_L);
 	bsize(str_dir, files, flag);
 	file_view(flag, files, str_dir);
 	if (flag & LS_FLAG_R)
@@ -84,7 +90,7 @@ void		main_view(int flag, char *str_dir)
 		if (cnt != 0)
 		{
 			fn_list[cnt] = ft_strnew(0);
-			sf_mainloop(flag, fn_list, 0);
+			sf_mainloop(flag, fn_list, 2);
 			ft_memdel((void **)&fn_list);
 		}
 	}

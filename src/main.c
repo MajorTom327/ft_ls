@@ -6,7 +6,7 @@
 /*   By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/11 11:16:11 by vthomas           #+#    #+#             */
-/*   Updated: 2016/10/11 11:51:10 by vthomas          ###   ########.fr       */
+/*   Updated: 2016/10/11 19:25:21 by vthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ void	sf_mainloop(int flag, char **dir, int st)
 	cnt = 0;
 	while (dir[cnt][0] != '\0')
 	{
-		if (cnt != 0 || !st)
+		if (st != 1)
 		{
-			ft_putchar('\n');
+			if (cnt || st > 1)
+				ft_putchar('\n');
 			ft_putstr(dir[cnt]);
 			ft_putendl(":");
 		}
@@ -35,12 +36,13 @@ int			main(int ac, char **av)
 {
 	char	**dir;
 	int		flag;
+	int		i;
 
 	flag = 0;
 	if (ac > 1)
 		flag = get_arg(av, ac);
-	dir = get_dir(ac, av);
-	sf_mainloop(flag, dir, 1);
+	dir = get_dir(ac, av, &i);
+	sf_mainloop(flag, dir, i - 1);
 	if (flag != 0)
 		ft_memdel((void **)--dir);
 	else

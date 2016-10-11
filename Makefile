@@ -6,14 +6,14 @@
 #    By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/29 21:15:40 by vthomas           #+#    #+#              #
-#    Updated: 2016/10/11 12:56:27 by vthomas          ###   ########.fr        #
+#    Updated: 2016/10/11 18:14:22 by vthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME=ft_ls
 #Debugging commande (yes/no)
-DEBUG=no
+DEBUG=yes
 CC=clang
 ifeq ($(DEBUG),yes)
 	CFLAGS= -Wall -Wextra -D DEBUG -Weverything
@@ -35,8 +35,10 @@ TEST_PATH=./test/
 SRC_NAME=main.c\
 		get_arg.c\
 		ls_exit.c\
+		option_spec.c\
 		viewer.c\
 		sorting.c\
+		spacing.c\
 		file_view.c\
 		printname.c
 INC_NAME=libft.h\
