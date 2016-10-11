@@ -6,7 +6,7 @@
 /*   By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/11 11:16:06 by vthomas           #+#    #+#             */
-/*   Updated: 2016/10/11 13:44:11 by vthomas          ###   ########.fr       */
+/*   Updated: 2016/10/11 14:02:45 by vthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int			get_arg(char **arg, int ac)
 		i = (ft_strchr(arg[cnt], 'F') != NULL) ? i | LS_FLAG_F : i;
 		i = (ft_strchr(arg[cnt], 'f') != NULL) ? i | LS_FLAG_MF | LS_FLAG_A : i;
 		i = (ft_strchr(arg[cnt], 'm') != NULL) ? i | LS_FLAG_M : i;
+		i = (ft_strchr(arg[cnt], 'i') != NULL) ? i | LS_FLAG_I : i;
 		cnt++;
 	}
 	if (i != 0 || (i == 0 && cnt == 1))

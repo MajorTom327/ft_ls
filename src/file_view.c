@@ -6,7 +6,7 @@
 /*   By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/11 11:16:01 by vthomas           #+#    #+#             */
-/*   Updated: 2016/10/11 11:16:04 by vthomas          ###   ########.fr       */
+/*   Updated: 2016/10/11 14:02:09 by vthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,13 @@
 #include <uuid/uuid.h>
 #include <time.h>
 
-static void	permission(t_stat stat)
+static void	permission(t_stat stat, int flag)
 {
+	if (flag & LS_FLAG_I)
+	{
+		ft_putnbr((int)stat.st_ino);
+		ft_putchar(' ');
+	}
 	if (S_ISDIR(stat.st_mode))
 		ft_putchar('d');
 	else if (S_ISLNK(stat.st_mode))
@@ -92,7 +97,7 @@ void		l_view(int flag, t_dirent *f_list, char *path)
 		file_path = free_join(file_path, "/");
 		file_path = free_join(file_path, f_list->d_name);
 		lstat(file_path, &stat);
-		permission(stat);
+		permission(stat, flag);
 		username(stat);
 		ft_putnbr((int)stat.st_size);
 		ft_putstr(stat.st_size > 9999 ? "\t" : ((stat.st_size < 10) ?\

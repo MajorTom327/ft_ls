@@ -10,6 +10,7 @@
 # define LS_FLAG_F	0x0080
 # define LS_FLAG_MF	0x0100
 # define LS_FLAG_M	0x0200
+# define LS_FLAG_I	0x0400
 
 # include <dirent.h>
 # include <sys/stat.h>
