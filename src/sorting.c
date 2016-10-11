@@ -6,7 +6,7 @@
 /*   By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/11 11:16:22 by vthomas           #+#    #+#             */
-/*   Updated: 2016/10/11 11:16:23 by vthomas          ###   ########.fr       */
+/*   Updated: 2016/10/11 13:07:06 by vthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	time_sort(t_dirent *dir, char *path)
 	while (dir[nb_file].d_name[0] != '\0')
 		nb_file++;
 	exit_mem((void *)(date = (int *)ft_memalloc(sizeof(int) * nb_file)));
-	while (i < nb_file)
+	while (i <= nb_file)
 	{
 		file_path = ft_strdup(path);
 		exit_mem(file_path);
@@ -96,7 +96,7 @@ void	ft_tablesort(int *t, int len, t_dirent *d)
 	int	x;
 
 	i = 0;
-	while (i < len)
+	while (i <= len)
 	{
 		x = i;
 		while (x < len)

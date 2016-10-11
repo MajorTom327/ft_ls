@@ -6,19 +6,19 @@
 #    By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/29 21:15:40 by vthomas           #+#    #+#              #
-#    Updated: 2016/09/17 01:45:06 by vthomas          ###   ########.fr        #
+#    Updated: 2016/10/11 12:56:27 by vthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME=ft_ls
 #Debugging commande (yes/no)
-DEBUG=yes
+DEBUG=no
 CC=clang
 ifeq ($(DEBUG),yes)
 	CFLAGS= -Wall -Wextra -D DEBUG -Weverything
 else
-	CFLAGS=-Wall -Wextra -Werror
+	CFLAGS=-Wall -Wextra -Werror -Weverything
 endif
 
 #* ******************************************* *#
@@ -76,7 +76,6 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 lib:
 	@echo "\033[34m[LIBRAIRIES]\033[0m"
 	@$(MAKE) -C libft
-	@$(MAKE) -C libdbg
 
 # Force dependance to be rebuild at all call of the rule(s)
 re: fclean all
@@ -84,12 +83,10 @@ re: fclean all
 clean:
 	@rm -rf $(OBJ_PATH)
 	@$(MAKE) -C libft $@
-	@$(MAKE) -C libdbg $@
 
 fclean: clean
 	@rm -rf $(NAME)
 	@$(MAKE) -C libft $@
-	@$(MAKE) -C libdbg $@
 	@echo "\nWow ! Student clean it so much !\n"
 
 test: re

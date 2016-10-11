@@ -6,7 +6,7 @@
 /*   By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/11 11:16:06 by vthomas           #+#    #+#             */
-/*   Updated: 2016/10/11 12:30:34 by vthomas          ###   ########.fr       */
+/*   Updated: 2016/10/11 13:44:11 by vthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int			get_arg(char **arg, int ac)
 	exit(0);
 }
 
-void		bsize(char *dir, t_dirent *files, int flag)
+void		bsize(char *dir, t_dirent *f, int flag)
 {
 	t_stat	st;
 	int		bs;
@@ -58,15 +58,18 @@ void		bsize(char *dir, t_dirent *files, int flag)
 	if (!(flag & LS_FLAG_L))
 		return ;
 	bs = 0;
-	while (files->d_name[0] != '\0')
+	while (f->d_name[0] != '\0')
 	{
-		fp = ft_strdup(dir);
-		fp = free_join(fp, "/");
-		fp = free_join(fp, files->d_name);
-		stat(fp, &st);
-		bs += st.st_blocks;
-		free(fp);
-		files++;
+		if ((f->d_name[0] == '.' && flag & LS_FLAG_A) || f->d_name[0] != '.')
+		{
+			fp = ft_strdup(dir);
+			fp = free_join(fp, "/");
+			fp = free_join(fp, f->d_name);
+			lstat(fp, &st);
+			bs += st.st_blocks;
+			free(fp);
+		}
+		f++;
 	}
 	ft_putstr("total ");
 	ft_putnbr_endl(bs);
