@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   viewer.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/10/11 11:16:26 by vthomas           #+#    #+#             */
+/*   Updated: 2016/10/11 11:27:33 by vthomas          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <ft_ls.h>
 #include <libft.h>
 
@@ -24,6 +36,33 @@ static void	simple_list(int flag, t_dirent *f_list, char *path)
 	}
 }
 
+static int	onebyone(t_dirent *files, char **fn_list, int flag, char *str_dir)
+{
+	char	*fp;
+	t_stat	stat;
+	int		cnt;
+
+	cnt = 0;
+	while (files->d_name[0] != '\0')
+	{
+		fp = ft_strdup(str_dir);
+		exit_mem(fp);
+		if (fp[ft_strlen(fp) - 1] != '/')
+			fp = free_join(fp, "/");
+		fp = free_join(fp, files->d_name);
+		lstat(fp, &stat);
+		if (S_ISDIR(stat.st_mode) && ft_strcmp(files->d_name, ".") != 0 &&\
+			ft_strcmp(files->d_name, "..") != 0)
+		{
+			if (files->d_name[0] != '.' || flag & LS_FLAG_A)
+				fn_list[cnt++] = ft_strdup(fp);
+		}
+		ft_strdel(&fp);
+		files++;
+	}
+	return (cnt);
+}
+
 void		main_view(int flag, char *str_dir)
 {
 	t_dirent	*files;
@@ -42,29 +81,7 @@ void		main_view(int flag, char *str_dir)
 		while (files[cnt].d_name[0] != '\0')
 			cnt++;
 		exit_mem((fn_list = (char **)malloc(sizeof(char *) * (size_t)cnt + 1)));
-		cnt = 0;
-//* ************************************************************************ *//
-		while (files->d_name[0] != '\0')
-		{
-			fp = ft_strdup(str_dir);
-			exit_mem(fp);
-			if (fp[ft_strlen(fp) - 1] != '/')
-				fp = free_join(fp, "/");
-			fp = free_join(fp, files->d_name);
-			lstat(fp, &stat);
-			if (S_ISDIR(stat.st_mode) && ft_strcmp(files->d_name, ".") != 0 &&\
-				ft_strcmp(files->d_name, "..") != 0)
-			{
-				if (files->d_name[0] != '.' || flag & LS_FLAG_A)
-				{
-					fn_list[cnt] = ft_strdup(fp);
-					cnt++;
-				}
-			}
-			ft_strdel(&fp);
-			files++;
-		}
-//* ************************************************************************ *//
+		cnt = onebyone(files, fn_list, flag, str_dir);
 		if (cnt != 0)
 		{
 			fn_list[cnt] = ft_strnew(0);
