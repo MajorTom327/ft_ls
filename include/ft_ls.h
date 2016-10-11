@@ -22,6 +22,7 @@ void		sf_mainloop(int flag, char **dir, int st);
 int			get_arg(char **arg, int ac);
 char		**get_dir(int ac, char **av);
 t_dirent	*get_files(char *dir_name);
+void		bsize(char *dir, t_dirent *files, int flag);
 
 void		main_view(int flag, char *str_dir);
 void		file_view(int flag, t_dirent *f_list, char *path);
@@ -35,5 +36,6 @@ void		ft_tablesort(int *t, int len, t_dirent *d);
 
 void		exit_failure(void) __attribute__ ((noreturn));
 void		exit_mem(void *mem);
+void		*exit_dir(char *dir_name);
 
 #endif

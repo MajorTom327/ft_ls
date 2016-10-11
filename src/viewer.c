@@ -6,7 +6,7 @@
 /*   By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/11 11:16:26 by vthomas           #+#    #+#             */
-/*   Updated: 2016/10/11 11:27:33 by vthomas          ###   ########.fr       */
+/*   Updated: 2016/10/11 12:36:02 by vthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,13 @@ static int	onebyone(t_dirent *files, char **fn_list, int flag, char *str_dir)
 void		main_view(int flag, char *str_dir)
 {
 	t_dirent	*files;
-	t_stat		stat;
-	char		*fp;
 	char		**fn_list;
 	int			cnt;
 
 	files = get_files(str_dir);
 	if (files == NULL)
 		return ;
+	bsize(str_dir, files, flag);
 	file_view(flag, files, str_dir);
 	if (flag & LS_FLAG_R)
 	{

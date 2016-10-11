@@ -6,7 +6,7 @@
 /*   By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/11 11:16:11 by vthomas           #+#    #+#             */
-/*   Updated: 2016/10/11 11:16:12 by vthomas          ###   ########.fr       */
+/*   Updated: 2016/10/11 11:51:10 by vthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	sf_mainloop(int flag, char **dir, int st)
 	cnt = 0;
 	while (dir[cnt][0] != '\0')
 	{
-		if (cnt != 0 && !st)
+		if (cnt != 0 || !st)
 		{
 			ft_putchar('\n');
 			ft_putstr(dir[cnt]);

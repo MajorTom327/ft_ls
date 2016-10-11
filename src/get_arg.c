@@ -6,7 +6,7 @@
 /*   By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/11 11:16:06 by vthomas           #+#    #+#             */
-/*   Updated: 2016/10/11 11:16:07 by vthomas          ###   ########.fr       */
+/*   Updated: 2016/10/11 12:30:34 by vthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,29 @@ int			get_arg(char **arg, int ac)
 	exit(0);
 }
 
+void		bsize(char *dir, t_dirent *files, int flag)
+{
+	t_stat	st;
+	int		bs;
+	char	*fp;
+
+	if (!(flag & LS_FLAG_L))
+		return ;
+	bs = 0;
+	while (files->d_name[0] != '\0')
+	{
+		fp = ft_strdup(dir);
+		fp = free_join(fp, "/");
+		fp = free_join(fp, files->d_name);
+		stat(fp, &st);
+		bs += st.st_blocks;
+		free(fp);
+		files++;
+	}
+	ft_putstr("total ");
+	ft_putnbr_endl(bs);
+}
+
 char		**get_dir(int ac, char **av)
 {
 	char	**dir;
@@ -84,16 +107,10 @@ t_dirent	*get_files(char *dir_name)
 	t_dirent	*files;
 	t_dirent	*tmp;
 	int			i;
-	char		*str;
 
 	directory = opendir(dir_name);
 	if (directory == NULL)
-	{
-		str = ft_strdup("ft_ls: ");
-		str = free_join(str, dir_name);
-		perror(str);
-		return (NULL);
-	}
+		return (exit_dir(dir_name));
 	i = 0;
 	while ((tmp = readdir(directory)) != NULL)
 		i++;

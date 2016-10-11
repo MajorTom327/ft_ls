@@ -1,3 +1,4 @@
-rm ./ft_ls
+rm ./ft_ls 2> /dev/null
+echo "\033[90mCompilation start...\033[0m"
 gcc -g ./src/*.c -I ./include ./**/*.a -o ft_ls
-echo "\033[32mOK\033[0m"
+echo "\033[32;4mCompilation OK\033[0m\n"
