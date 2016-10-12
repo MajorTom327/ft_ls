@@ -17,6 +17,12 @@
 # define LS_FLAG_MS	0x4000
 # define LS_FLAG_MU	0x8000
 
+# ifdef __gnu_linux__
+#  define st_mtimespec st_mtim
+#  define st_ctimespec st_ctim
+# endif
+
+
 # include <dirent.h>
 # include <sys/stat.h>
 

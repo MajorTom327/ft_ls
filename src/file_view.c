@@ -15,7 +15,7 @@
 #include <sys/stat.h>
 #include <pwd.h>
 #include <grp.h>
-#include <uuid/uuid.h>
+//#include <uuid/uuid.h>
 #include <time.h>
 
 static void	permission(t_stat stat)
@@ -51,7 +51,7 @@ static void	username(t_stat stat, int flag)
 	struct group	*grp;
 
 	ft_putstr("  ");
-	ft_putnbr(stat.st_nlink);
+	ft_putnbr((int)stat.st_nlink);
 	ft_putstr("  ");
 	usr = getpwuid(stat.st_uid);
 	if (!(flag & LS_FLAG_MG))
