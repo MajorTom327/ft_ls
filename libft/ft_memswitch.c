@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memswitch.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vthomas <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/10 20:49:29 by vthomas           #+#    #+#             */
-/*   Updated: 2016/09/10 20:52:09 by vthomas          ###   ########.fr       */
+/*   Updated: 2016/10/14 03:55:12 by vthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,5 @@ void	ft_memswitch(void *src, void *dst, size_t l)
 	ft_memcpy(tmp, src, l);
 	ft_memcpy(src, dst, l);
 	ft_memcpy(dst, tmp, l);
+	ft_memdel(&tmp);
 }

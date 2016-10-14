@@ -6,7 +6,7 @@
 /*   By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/11 11:16:11 by vthomas           #+#    #+#             */
-/*   Updated: 2016/10/11 19:25:21 by vthomas          ###   ########.fr       */
+/*   Updated: 2016/10/14 03:45:31 by vthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ int			main(int ac, char **av)
 		ft_memdel((void **)--dir);
 	else
 		ft_memdel((void **)dir);
+	while (1);
 	return (0);
 }
