@@ -5,6 +5,7 @@ compiler:
 
 os:
   - osx
+  - linux
 
 env:
   - ARCH=x86_64
