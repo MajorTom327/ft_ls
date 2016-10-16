@@ -6,7 +6,7 @@
 /*   By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/11 11:16:01 by vthomas           #+#    #+#             */
-/*   Updated: 2016/10/11 20:12:33 by vthomas          ###   ########.fr       */
+/*   Updated: 2016/10/16 06:58:20 by vthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include <sys/stat.h>
 #include <pwd.h>
 #include <grp.h>
-//#include <uuid/uuid.h>
 #include <time.h>
 
 static void	permission(t_stat stat)

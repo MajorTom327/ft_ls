@@ -6,7 +6,7 @@
 /*   By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/11 11:16:26 by vthomas           #+#    #+#             */
-/*   Updated: 2016/10/14 04:03:49 by vthomas          ###   ########.fr       */
+/*   Updated: 2016/10/16 12:36:34 by vthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ void		main_view(int flag, char *str_dir)
 	files = get_files(str_dir);
 	if (files == NULL)
 		return ;
-	bsize(str_dir, files, flag);
-	file_view(flag, files, str_dir);
+	if (bsize(str_dir, files, flag))
+		file_view(flag, files, str_dir);
 	if (flag & LS_FLAG_R)
 	{
 		cnt = 0;
@@ -92,7 +92,6 @@ void		main_view(int flag, char *str_dir)
 			ft_memdel((void **)&fn_list);
 		}
 	}
-	ft_memdel(&files);
 }
 
 void		file_view(int flag, t_dirent *f_list, char *path)

@@ -6,14 +6,14 @@
 /*   By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/11 18:00:24 by vthomas           #+#    #+#             */
-/*   Updated: 2016/10/11 20:10:44 by vthomas          ###   ########.fr       */
+/*   Updated: 2016/10/16 12:38:08 by vthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_ls.h>
 #include <libft.h>
 
-void opt_1(int flag, char *fp, char *file)
+void	opt_1(int flag, char *fp, char *file)
 {
 	t_stat	st;
 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vthomas <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/10 21:34:05 by vthomas           #+#    #+#              #
-#    Updated: 2016/09/10 21:34:16 by vthomas          ###   ########.fr        #
+#    Updated: 2016/10/16 11:50:12 by vthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,7 +82,7 @@ INC_PATH = ./
 INC_NAME = libft.h
 INC = $(addprefix -I, $(INC_PATH))
 CC = gcc
-CFLAGS = -Werror -Wall -Wextra
+CFLAGS = -Werror -Wall -Wextra -g
 OBJ_NAME = $(SRC_NAME:.c=.o)
 SRC = $(addprefix $(SRC_PATH),$(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))

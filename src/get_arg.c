@@ -6,7 +6,7 @@
 /*   By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/11 11:16:06 by vthomas           #+#    #+#             */
-/*   Updated: 2016/10/11 20:46:20 by vthomas          ###   ########.fr       */
+/*   Updated: 2016/10/16 08:14:24 by vthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ int			get_arg(char **arg, int ac)
 	exit(0);
 }
 
-void		bsize(char *dir, t_dirent *f, int flag)
+int			bsize(char *dir, t_dirent *f, int flag)
 {
 	t_stat	st;
 	int		bs;
 	char	*fp;
 
 	if (!(flag & LS_FLAG_L))
-		return ;
+		return (1);
 	bs = 0;
 	while (f->d_name[0] != '\0')
 	{
@@ -58,12 +58,15 @@ void		bsize(char *dir, t_dirent *f, int flag)
 			fp = free_join(fp, f->d_name);
 			lstat(fp, &st);
 			bs += st.st_blocks;
-			free(fp);
+			ft_strdel(&fp);
 		}
 		f++;
 	}
+	if (bs == 0)
+		return (0);
 	ft_putstr("total ");
 	ft_putnbr_endl(bs);
+	return (1);
 }
 
 char		**get_dir(int ac, char **av, int *cnt)

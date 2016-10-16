@@ -35,7 +35,7 @@ int			get_arg(char **arg, int ac);
 int			get_flag(int i, char *arg);
 char		**get_dir(int ac, char **av, int *cnt);
 t_dirent	*get_files(char *dir_name);
-void		bsize(char *dir, t_dirent *f, int flag);
+int			bsize(char *dir, t_dirent *f, int flag);
 
 void		main_view(int flag, char *str_dir);
 void		file_view(int flag, t_dirent *f_list, char *path);
