@@ -1,6 +1,7 @@
 ft_ls
-obj/
 **/*.o
+**/*.a
 **/.*.swp
 **/.nfs.*
 **/*.dSYM
+**/*tmp*
