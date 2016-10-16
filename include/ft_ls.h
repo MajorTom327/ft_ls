@@ -45,7 +45,7 @@ void		printname(int flag, t_stat stat, t_dirent file, char *path);
 void		sort_alpha(t_dirent **f_list);
 void		sort(int flag, t_dirent *dir, char *path);
 void		time_sort(t_dirent *dir, char *path, int flag);
-void		ft_tablesort(int *t, int len, t_dirent *d);
+void		ft_tablesort(int *t, int len, t_dirent *d, void **date);
 
 void		exit_failure(void) __attribute__ ((noreturn));
 void		exit_mem(void *mem);

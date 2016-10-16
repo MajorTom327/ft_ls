@@ -6,7 +6,7 @@
 /*   By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/11 11:16:22 by vthomas           #+#    #+#             */
-/*   Updated: 2016/10/16 11:47:52 by vthomas          ###   ########.fr       */
+/*   Updated: 2016/10/16 13:54:18 by vthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,20 @@ void	sort(int flag, t_dirent *dir, char *path)
 
 void	time_sort(t_dirent *dir, char *path, int flag)
 {
-	t_stat			m_stat;
-	unsigned int	nb_file;
-	unsigned int	i;
-	int				*date;
-	char			*file_path;
+	t_stat				m_stat;
+	unsigned int		nb_file;
+	int					i;
+	int					*date;
+	char				*file_path;
 
 	nb_file = 0;
-	i = 0;
+	i = -1;
 	while (dir[nb_file].d_name[0] != '\0')
 		nb_file++;
 	exit_mem((void *)(date = (int *)ft_memalloc(sizeof(int) * nb_file)));
-	while (i <= nb_file)
+	while (++i <= (int)nb_file)
 	{
-		file_path = ft_strdup(path);
-		exit_mem(file_path);
+		exit_mem((void *)(file_path = ft_strdup(path)));
 		if (file_path[ft_strlen(file_path) - 1] != '/')
 			file_path = free_join(file_path, "/");
 		file_path = free_join(file_path, dir[i].d_name);
@@ -62,10 +61,8 @@ void	time_sort(t_dirent *dir, char *path, int flag)
 		else
 			date[i] = (int)m_stat.st_mtimespec.tv_sec;
 		ft_strdel(&file_path);
-		i++;
 	}
-	ft_tablesort(date, (int)nb_file, dir);
-	ft_memdel((void **)&date);
+	ft_tablesort(date, (int)nb_file, dir, (void **)&date);
 }
 
 void	sort_alpha(t_dirent **f_list)
@@ -93,7 +90,7 @@ void	sort_alpha(t_dirent **f_list)
 	}
 }
 
-void	ft_tablesort(int *t, int len, t_dirent *d)
+void	ft_tablesort(int *t, int len, t_dirent *d, void **date)
 {
 	int	i;
 	int	x;
@@ -117,4 +114,5 @@ void	ft_tablesort(int *t, int len, t_dirent *d)
 		if (x != 0)
 			i++;
 	}
+	ft_memdel(date);
 }

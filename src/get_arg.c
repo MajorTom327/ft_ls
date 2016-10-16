@@ -6,7 +6,7 @@
 /*   By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/11 11:16:06 by vthomas           #+#    #+#             */
-/*   Updated: 2016/10/16 08:14:24 by vthomas          ###   ########.fr       */
+/*   Updated: 2016/10/16 13:02:40 by vthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ char		**get_dir(int ac, char **av, int *cnt)
 	{
 		if (av[t][0] == '-')
 			continue ;
-		t = 0;
 		break ;
 	}
 	*cnt = t;
