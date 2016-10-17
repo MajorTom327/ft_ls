@@ -6,7 +6,7 @@
 /*   By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/11 18:07:00 by vthomas           #+#    #+#             */
-/*   Updated: 2016/10/11 20:35:47 by vthomas          ###   ########.fr       */
+/*   Updated: 2016/10/17 12:40:45 by vthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		get_flag(int i, char *arg)
 	i = (ft_strchr(arg, 'f') != NULL) ? i | LS_FLAG_MF | LS_FLAG_A : i;
 	i = (ft_strchr(arg, 'm') != NULL) ? i | LS_FLAG_M : i;
 	i = (ft_strchr(arg, 'i') != NULL) ? i | LS_FLAG_I : i;
-	i = (ft_strchr(arg, 'g') != NULL) ? i | LS_FLAG_MG | LS_FLAG_L: i;
+	i = (ft_strchr(arg, 'g') != NULL) ? i | LS_FLAG_MG | LS_FLAG_L : i;
 	i = (ft_strchr(arg, 'n') != NULL) ? i | LS_FLAG_N | LS_FLAG_L -\
 		LS_FLAG_MG : i;
 	i = (ft_strchr(arg, 'O') != NULL) ? i | LS_FLAG_O : i;

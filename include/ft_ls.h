@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_ls.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/10/17 12:41:33 by vthomas           #+#    #+#             */
+/*   Updated: 2016/10/17 12:57:10 by vthomas          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_LS_H
 # define FT_LS_H
 # define LS_FLAG_L	0x0001
@@ -16,12 +28,6 @@
 # define LS_FLAG_O	0x2000
 # define LS_FLAG_MS	0x4000
 # define LS_FLAG_MU	0x8000
-
-# ifdef __gnu_linux__
-#  define st_mtimespec st_mtim
-#  define st_ctimespec st_ctim
-# endif
-
 
 # include <dirent.h>
 # include <sys/stat.h>
@@ -47,7 +53,7 @@ void		sort(int flag, t_dirent *dir, char *path);
 void		time_sort(t_dirent *dir, char *path, int flag);
 void		ft_tablesort(int *t, int len, t_dirent *d, void **date);
 
-void		exit_failure(void) __attribute__ ((noreturn));
+void		exit_failure(void) __attribute__	((noreturn));
 void		exit_mem(void *mem);
 void		*exit_dir(char *dir_name);
 

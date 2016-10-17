@@ -6,7 +6,7 @@
 /*   By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/11 18:00:24 by vthomas           #+#    #+#             */
-/*   Updated: 2016/10/16 12:38:08 by vthomas          ###   ########.fr       */
+/*   Updated: 2016/10/17 12:40:27 by vthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	opt_1(int flag, char *fp, char *file)
 
 	lstat(fp, &st);
 	if (!(flag & LS_FLAG_A) && file[0] == '.')
-		return;
+		return ;
 	if (flag & LS_FLAG_I)
 	{
 		put_space((int)st.st_ino, 10);

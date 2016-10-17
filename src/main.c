@@ -6,7 +6,7 @@
 /*   By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/11 11:16:11 by vthomas           #+#    #+#             */
-/*   Updated: 2016/10/16 13:03:07 by vthomas          ###   ########.fr       */
+/*   Updated: 2016/10/17 12:40:05 by vthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	sf_mainloop(int flag, char **dir, int st)
 	}
 }
 
-int			main(int ac, char **av)
+int		main(int ac, char **av)
 {
 	char	**dir;
 	int		flag;
