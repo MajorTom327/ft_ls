@@ -6,19 +6,19 @@
 #    By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/29 21:15:40 by vthomas           #+#    #+#              #
-#    Updated: 2016/10/16 07:02:59 by vthomas          ###   ########.fr        #
+#    Updated: 2016/10/18 11:42:39 by vthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME=ft_ls
 #Debugging commande (yes/no)
-DEBUG=yes
+DEBUG=no
 CC=clang
 ifeq ($(DEBUG),yes)
 	CFLAGS= -Wall -Wextra -Weverything -g
 else
-	CFLAGS=-Wall -Wextra -Werror -Weverything
+	CFLAGS=-Wall -Wextra -Werror -Weverything -Wno-missing-noreturn
 endif
 
 #* ******************************************* *#

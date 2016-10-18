@@ -6,7 +6,7 @@
 /*   By: vthomas <vthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/17 12:41:33 by vthomas           #+#    #+#             */
-/*   Updated: 2016/10/17 12:57:10 by vthomas          ###   ########.fr       */
+/*   Updated: 2016/10/17 13:41:14 by vthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void		sort(int flag, t_dirent *dir, char *path);
 void		time_sort(t_dirent *dir, char *path, int flag);
 void		ft_tablesort(int *t, int len, t_dirent *d, void **date);
 
-void		exit_failure(void) __attribute__	((noreturn));
+void		exit_failure(void);
 void		exit_mem(void *mem);
 void		*exit_dir(char *dir_name);
 
